@@ -1,0 +1,6 @@
+com/codewithmotari/scims/JakartaRestConfiguration.class
+com/codewithmotari/scims/dao/ContactDAO.class
+com/codewithmotari/scims/model/Contact.class
+com/codewithmotari/scims/resources/JakartaEE8Resource.class
+com/codewithmotari/scims/model/Contact$Gender.class
+com/codewithmotari/scims/domain/DBConnection.class

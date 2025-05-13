@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context docBase="/home/ztl/NetBeansProjects/Motari_Internship/SCIMS/src/main/webapp" path="/SCIMS">
+  <Resources cacheMaxSize="10240">
+    <PreResources base="/home/ztl/NetBeansProjects/Motari_Internship/SCIMS/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+  </Resources>
+</Context>
