@@ -12,17 +12,36 @@ import java.util.List;
  *
  * @author ztl
  */
+
 public class ContactDAO {
     private final Connection con;
 
     public ContactDAO() throws SQLException {
         this.con = DBConnection.getConnection();
     }
-    
-    public Contact createContact(Contact contact){return null;}
+    //returns a one or 0
+    public Contact createContact(Contact contactdto) throws SQLException {
+//        String query="insert into contacts (full_names,phone_number,id_number,date_of_brith,gender,county) values ('"+contactdto.getFullName()+","+contactdto.getPhoneNumber()+","+contactdto.getIdNumber()+","+contactdto.getDOB()+","+contactdto.getGender()+","+contactdto.getCounty()+
+//                "')";
+        String query = "INSERT INTO contacts (full_names, phone_number, id_number, date_of_brith, county) VALUES ('"
+                + contactdto.getFullName() + "', '"
+                + contactdto.getPhoneNumber() + "', '"
+                + contactdto.getIdNumber() + "', '"
+                + contactdto.getDOB() + "', '"
+                //+ contactdto.getGender() + "', '"
+                + contactdto.getCounty() + "')";
+
+        Statement ps=con.createStatement();
+        int created=ps.executeUpdate(query);
+        ps.close();
+        if (created==0){
+            return null;
+        }
+        return contactdto;
+    }
 
 
-
+    //implemented to fetch all contacts from db
     public List<Contact> getAllContacts() throws SQLException{
         List<Contact> allcontacts=new ArrayList<>();
         String query="select * from contacts";
@@ -30,11 +49,16 @@ public class ContactDAO {
         ResultSet rs= stmt.executeQuery(query);
         while (rs.next()){
             Contact c=new Contact();
-            c.setPhoneNumber(Integer.parseInt(rs.getString("phoneNumer")));
-            c.setEmailAddress(rs.getString("emailAddress"));
-            c.setId(Integer.parseInt(rs.getString("idNumber")));
-            c.setDOB(rs.getDate("DOB"));
-            c.setGender(rs.getObject("gender", Contact.Gender.class));
+            c.setFullName(rs.getString("full_names"));
+            c.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            c.setEmailAddress(rs.getString("email_address"));
+            c.setId(rs.getInt("id"));
+            try{
+           c.setDOB(rs.getDate("date_of_brith"));} catch (SQLException e) {
+                c.setDOB(null);
+                throw new RuntimeException(e);
+            }
+            c.setGender(rs.getString("gender"));
             c.setCounty(rs.getString("county"));
 
             //add the contact to the list
@@ -43,9 +67,10 @@ public class ContactDAO {
         
         
         return allcontacts;}
+
     public Contact getContact(int id) throws SQLException {
         Contact contact=new Contact();
-        String query="select * from contacts where id=id";
+        String query="select * from contacts where id="+id;
         PreparedStatement ps=con.prepareStatement(query);
         ResultSet rs=ps.executeQuery();
         if (rs.next()){
@@ -53,13 +78,27 @@ public class ContactDAO {
             contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_birth"));
-            contact.setGender(rs.getObject("gender", Contact.Gender.class));
+            contact.setGender(rs.getString("gender"));
             contact.setCounty(rs.getString("county"));
         }
 
         return contact;}
-    public Contact getContact(String email){
 
+    //get a contact if an email is provided
+    public Contact getContact(String email) throws SQLException {
+        Contact contact=new Contact();
+        String query="select * FROM contacts WHERE email_address="+email;
+        PreparedStatement ps=con.prepareStatement(query);
+        ResultSet rs=ps.executeQuery();
+        if(rs.next()){
+            contact.setFullName(rs.getString("full_name"));
+            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setEmailAddress(rs.getString("email_address"));
+            contact.setDOB(rs.getDate("date_of_birth"));
+            contact.setGender(rs.getString("gender"));
+            contact.setCounty(rs.getString("county"));
+            return contact;
+        }
         return null;}
     public boolean updateContact(Contact contact){return false;}
     public void deleteContact(Contact contact){}

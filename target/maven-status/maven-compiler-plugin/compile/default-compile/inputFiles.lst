@@ -1,4 +1,11 @@
-/home/ztl/NetBeansProjects/Motari_Internship/SCIMS/src/main/java/com/codewithmotari/scims/resources/JakartaEE8Resource.java
-/home/ztl/NetBeansProjects/Motari_Internship/SCIMS/src/main/java/com/codewithmotari/scims/dao/ContactDAO.java
-/home/ztl/NetBeansProjects/Motari_Internship/SCIMS/src/main/java/com/codewithmotari/scims/model/Contact.java
-/home/ztl/NetBeansProjects/Motari_Internship/SCIMS/src/main/java/com/codewithmotari/scims/JakartaRestConfiguration.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/ContactDAO.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/DBConnection.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/resources/JakartaEE8Resource.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/ContactAddServlet.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/JakartaRestConfiguration.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/Factory.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/ContactService.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/Contactdto.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/Contact.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/ContactServiceimpl.java
+/home/ztl/NetBeansProjects/Motari_Internship/scims/src/main/java/com/codewithmotari/scims/ContactServlet.java

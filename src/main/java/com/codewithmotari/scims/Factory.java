@@ -1,5 +1,8 @@
 package com.codewithmotari.scims;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.sql.SQLException;
 
 public class Factory {
@@ -24,5 +27,13 @@ public class Factory {
             contactDAO=new ContactDAO();
         }
         return contactDAO;
+    }
+
+    public static Gson getGson() {
+        //created a gson in order to help serialize a contact object to json
+        Gson gson=new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        return gson;
     }
 }

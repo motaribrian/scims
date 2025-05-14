@@ -4,6 +4,10 @@
  */
 package com.codewithmotari.scims;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -12,12 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author ztl
  */
-@WebServlet("/contacts/*")
+@WebServlet("/contacts")
 public class ContactServlet extends HttpServlet {
     private final ContactService contactService;
 
@@ -35,14 +40,24 @@ public class ContactServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Path("/all")
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path=request.getPathInfo();
-        PrintWriter w=response.getWriter();
-        //if (path==null){path="/";}
-        w.print(path);
-            }
+        response.setContentType("application/json");
+        String jsonString="";
+        Gson gson=Factory.getGson();
+        try {
+            //serialize contact to json
+            jsonString=gson.toJson(contactService.getAllContacts());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        PrintWriter pw=response.getWriter();
+        pw.print(jsonString);
+
+
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -55,34 +70,25 @@ public class ContactServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        String contentype=request.getContentType();
+        if(!"application/json".equals(contentype)){
+            response.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,"invalid content type");
+            return;
+        }
+        try(BufferedReader reader=request.getReader()){
+            Gson gson=new Gson();
+            Contact contact=gson.fromJson(reader, Contact.class);
+            response.getWriter()
+                    .append("successfully added contact")
+                    .append("<h1>")
+                    .append(contact
+                            .getFullName())
+                    .append("</h1>");
+        } catch (IOException e){
+            request.setAttribute("message","There was an error :" + e.getMessage());
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-    //public void init(){}
-    //    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet Contact</title>");
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet Contact at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-//    }
+
 
 }

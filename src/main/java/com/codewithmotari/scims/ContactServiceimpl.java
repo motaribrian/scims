@@ -21,4 +21,10 @@ public class ContactServiceimpl implements ContactService {
     public Contact getContact(int id) throws SQLException {
         return contactdao.getContact(id);
     }
+
+    @Override
+    public boolean createContact(Contact contact) throws SQLException {
+        Contact c=contactdao.createContact(contact);
+        return c != null;
+    }
 }

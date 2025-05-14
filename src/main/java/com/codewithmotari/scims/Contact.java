@@ -4,7 +4,8 @@
  */
 package com.codewithmotari.scims;
 
-import java.util.Date;
+import java.sql.Date;
+
 /**
  *
  * @author ztl
@@ -15,18 +16,37 @@ public class Contact {
     private String fullName;
     private int phoneNumber;
     private String emailAddress;
-    private Long idNumber;
+    private int idNumber;
     private Date DOB;
-    private Gender gender;
+    private String gender;
     private String County;
 
     public enum Gender {
         MALE,
         FEMALE,
-        NONBINARY
+        NONBINARY;
+
+        @Override
+        public String toString() {
+            return "Gender{}";
+        }
     }
 
-    public Contact(int id, String fullName, int phoneNumber, String emailAddress, Long idNumber, Date DOB, Gender gender, String County) {
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", idNumber=" + idNumber +
+                ", DOB=" + DOB +
+                ", gender=" + gender +
+                ", County='" + County + '\'' +
+                '}';
+    }
+
+    public Contact(int id, String fullName, int phoneNumber, String emailAddress, int idNumber, Date DOB, String gender, String County) {
         this.id = id;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -72,11 +92,11 @@ public class Contact {
         this.emailAddress = emailAddress;
     }
 
-    public Long getIdNumber() {
+    public int getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(Long idNumber) {
+    public void setIdNumber(int idNumber) {
         this.idNumber = idNumber;
     }
 
@@ -88,11 +108,11 @@ public class Contact {
         this.DOB = DOB;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

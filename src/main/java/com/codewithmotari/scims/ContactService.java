@@ -6,4 +6,5 @@ import java.util.List;
 public interface ContactService {
     public List<Contact> getAllContacts() throws SQLException;
     public Contact getContact(int id)throws SQLException;
+    public boolean createContact(Contact contact) throws SQLException;
 }
