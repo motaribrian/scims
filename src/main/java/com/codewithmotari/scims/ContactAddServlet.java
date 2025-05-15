@@ -87,41 +87,39 @@ public class ContactAddServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        String firstName = request.getParameter("firstname");
-        String lastName = (String) request.getParameter("lastname");
-        String fullName = firstName + " " + lastName;
-        System.out.println(fullName);
-        int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
-        String emailaddress = (String) request.getParameter("emailaddress");
-        System.out.println(emailaddress);
-        int idnumber = Integer.parseInt(request.getParameter("idnumber"));
-        System.out.println(idnumber);
-
-        //Contact.Gender gender= (Contact.Gender) request.getParameter("gender");
-        String county = (String) request.getParameter("county");
-        System.out.println(county);
 
 
-        Contact contact = new Contact();
-        contact.setFullName(fullName);
-        contact.setPhoneNumber(phoneNumber);
-        contact.setEmailAddress(emailaddress);
-        contact.setIdNumber(idnumber);
-        //contact.setGender(gender);
-        contact.setCounty(county);
-        contact.setUserId(userId);
-        System.out.println("finnally :" + contact.toString());
 
         try {
+            String firstName = request.getParameter("firstname");
+            String lastName = (String) request.getParameter("lastname");
+            String fullName = firstName + " " + lastName;
+            int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
+            int idnumber = Integer.parseInt(request.getParameter("idnumber"));
+
+            String emailaddress = (String) request.getParameter("emailaddress");
+            System.out.println(emailaddress);
+            System.out.println(idnumber);
+
+            //Contact.Gender gender= (Contact.Gender) request.getParameter("gender");
+            String county = (String) request.getParameter("county");
+            System.out.println(county);
+
+
+            Contact contact = new Contact();
+            contact.setFullName(fullName);
+            contact.setPhoneNumber(phoneNumber);
+            contact.setEmailAddress(emailaddress);
+            contact.setIdNumber(idnumber);
+            //contact.setGender(gender);
+            contact.setCounty(county);
+            contact.setUserId(userId);
             contactService.createContact(contact);
             RequestDispatcher rd = request.getRequestDispatcher("/welcome");
             rd.forward(request, response);
 
-        } catch (SQLException e) {
-            RequestDispatcher view = request.getRequestDispatcher("/contactAddFailure.jsp");
-            view.forward(request, response);
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        } catch (SQLException | NumberFormatException e) {
+            doGet(request,response);
         }
 
 

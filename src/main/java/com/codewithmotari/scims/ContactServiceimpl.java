@@ -27,4 +27,9 @@ public class ContactServiceimpl implements ContactService {
         Contact c=contactdao.createContact(contact);
         return c != null;
     }
+
+    @Override
+    public List<Contact> getContactbyUser(int userId) throws SQLException {
+        return contactdao.getContactbyUser(userId);
+    }
 }

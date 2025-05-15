@@ -106,7 +106,30 @@ public class ContactDAO {
             contact.setCounty(rs.getString("county"));
             return contact;
         }
-        return null;}
+        return null;
+    }
+
+
+    //get a contact if an email is provided
+    public List<Contact> getContactbyUser(int  userId) throws SQLException {
+        List<Contact> list=new ArrayList<>();
+        Contact contact=new Contact();
+        String query="select * FROM contacts WHERE user_id="+userId;
+        PreparedStatement ps=con.prepareStatement(query);
+        ResultSet rs=ps.executeQuery();
+        while(rs.next()){
+            contact.setFullName(rs.getString("full_names"));
+            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setEmailAddress(rs.getString("email_address"));
+            contact.setDOB(rs.getDate("date_of_brith"));
+            contact.setGender(rs.getString("gender"));
+            contact.setCounty(rs.getString("county"));
+             list.add(contact);
+        }
+        return list;
+    }
+
+
     public boolean updateContact(Contact contact){return false;}
     public void deleteContact(Contact contact){}
     

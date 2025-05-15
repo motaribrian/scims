@@ -1,3 +1,4 @@
+<%@ taglib uri="http://jakarta.apache.org/taglibs/standard-1.2" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,21 +51,24 @@
         </tr>
       </thead>
       <tbody>
+         <c:forEach var="contact" items="${contacts}">
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <th scope="row">${contact.id}</th>
+          <td>${contact.fullname}</td>
+          <td>${contact.emailaddress}</td>
+          <td>${contact.idnumber}</td>
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
         </tr>
+            </c:forEach>
       </tbody>
     </table>
     <button type="button" class="btn btn-success" onClick="location.href='/contacts/add';">Add New</button>
-    <button type="button" class="btn btn-danger">Log Out</button>
-
+    <form action="/" method="get">
+    <button type="submit" class="btn btn-outline-danger">Log Out</button>
+    </form>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 
