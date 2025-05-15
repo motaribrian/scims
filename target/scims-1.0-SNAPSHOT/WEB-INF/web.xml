@@ -10,6 +10,17 @@
         <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     -->
+
+    <!--welcome servlet -->
+
+    <servlet>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <servlet-class>com.codewithmotari.scims.WelcomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ContactAddServlet</servlet-name>
         <servlet-class>com.codewithmotari.scims.ContactAddServlet</servlet-class>

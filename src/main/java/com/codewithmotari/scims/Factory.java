@@ -8,6 +8,8 @@ import java.sql.SQLException;
 public class Factory {
     private static ContactServiceimpl contactServiceimpl;
     private static ContactDAO contactDAO;
+    private static UserDao userdao;
+    private static UserService userservice;
 
     public Factory() throws SQLException {
         contactServiceimpl = new ContactServiceimpl();
@@ -35,5 +37,17 @@ public class Factory {
                 .setPrettyPrinting()
                 .create();
         return gson;
+    }
+
+    public static UserDao getUserDao() throws SQLException {
+        if (userdao==null){
+            userdao=new UserDao();
+        }
+        return userdao;
+    }
+
+    public static UserService getUserService() {
+        if(userservice==null){userservice=new UserService();}
+        return userservice;
     }
 }

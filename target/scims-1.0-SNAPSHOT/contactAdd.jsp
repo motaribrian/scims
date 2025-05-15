@@ -22,28 +22,28 @@ Contact createContact(String name,String email,String phone){
 <form class="row g-3" style="margin:auto;" method="POST" >
     <div class="col-md-5">
         <label for="firstname" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstname" placeholder="john">
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="john">
     </div>
     <div class="col-md-5">
         <label for="lastname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastname" placeholder="doe">
+        <input type="text" class="form-control" id="lastname" name"lastname" placeholder="doe">
     </div>
     <div class="col-10">
         <label for="phonenumber" class="form-label">Phone Number</label>
-        <input type="number" class="form-control" id="phonenumber" placeholder="0700000000">
+        <input type="number" class="form-control" id="phonenumber" name="phonenumber" placeholder="0700000000">
     </div>
     <div class="col-10">
         <label for="emailaddress" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="emailaddress" placeholder="johndoe@email.mail">
+        <input type="email" class="form-control" id="emailaddress" name="emailaddress" placeholder="johndoe@email.mail">
     </div>
     <div class="col-10">
         <label for="idnumber" class="form-label">ID Number</label>
-        <input type="number" class="form-control" id="idnumber">
+        <input type="number" class="form-control" name="idnumber" id="idnumber">
     </div>
 
     <div class="col-md-10">
         <label for="gender" class="form-label">Gender</label>
-        <select id="gender" class="form-select">
+        <select id="gender" class="form-select" name="gender">
             <option selected>Male</option>
             <option>Female</option>
             <option></option>
@@ -51,7 +51,7 @@ Contact createContact(String name,String email,String phone){
     </div>
     <div class="col-10">
         <label for="county" class="form-label">County of Residence</label>
-        <input type="text" class="form-control" id="county">
+        <input type="text" class="form-control" id="county" name="county">
     </div>
     <%=
         new java.util.Date()

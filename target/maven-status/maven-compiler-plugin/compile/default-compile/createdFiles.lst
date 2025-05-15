@@ -10,3 +10,4 @@ com/codewithmotari/scims/ContactService.class
 com/codewithmotari/scims/ContactServlet.class
 com/codewithmotari/scims/ContactAddServlet.class
 com/codewithmotari/scims/Factory.class
+com/codewithmotari/scims/WelcomeServlet.class

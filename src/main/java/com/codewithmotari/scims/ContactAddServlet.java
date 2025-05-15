@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ContactAddServlet extends HttpServlet {
     private ContactService contactService;
+    private UserService userService;
     public ContactAddServlet() throws SQLException {
         contactService=Factory.getContactServiceimpl();
+        userService=Factory.getUserService();
     }
 
     /**
@@ -47,6 +50,13 @@ public class ContactAddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        Object username=  session.getAttribute("username");
+
+        if(username==null){
+            RequestDispatcher rd= request.getRequestDispatcher("/");
+            rd.forward(request,response);
+        }
         RequestDispatcher view= request.getRequestDispatcher("/contactAdd.jsp");
         view.forward(request,response);
 
@@ -63,39 +73,53 @@ public class ContactAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String firstName=  request.getParameter("firstname");
-        String lastName= (String) request.getParameter("lastname");
-        String fullName=firstName +" "+ lastName;
+
+        HttpSession session = request.getSession();
+        Object username = session.getAttribute("username");
+
+        if (username == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("/");
+            rd.forward(request, response);
+        }
+        int userId;
+        try {
+            userId = userService.getUser((String) username).getId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        String firstName = request.getParameter("firstname");
+        String lastName = (String) request.getParameter("lastname");
+        String fullName = firstName + " " + lastName;
         System.out.println(fullName);
-        int phoneNumber= Integer.parseInt(request.getParameter("phonenumber"));
-        String emailaddress= (String) request.getParameter("emailaddress");
+        int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
+        String emailaddress = (String) request.getParameter("emailaddress");
         System.out.println(emailaddress);
-        int idnumber= Integer.parseInt(request.getParameter("idnumber"));
+        int idnumber = Integer.parseInt(request.getParameter("idnumber"));
         System.out.println(idnumber);
 
         //Contact.Gender gender= (Contact.Gender) request.getParameter("gender");
-        String county= (String) request.getParameter("county");
+        String county = (String) request.getParameter("county");
         System.out.println(county);
 
 
-        Contact contact=new Contact();
+        Contact contact = new Contact();
         contact.setFullName(fullName);
         contact.setPhoneNumber(phoneNumber);
         contact.setEmailAddress(emailaddress);
         contact.setIdNumber(idnumber);
         //contact.setGender(gender);
         contact.setCounty(county);
-        System.out.println("finnally :"+contact.toString());
+        contact.setUserId(userId);
+        System.out.println("finnally :" + contact.toString());
 
         try {
             contactService.createContact(contact);
-            RequestDispatcher view= request.getRequestDispatcher("/contactSuccess.jsp");
-            System.out.println(contact.getFullName());
-            view.forward(request,response);
+            RequestDispatcher rd = request.getRequestDispatcher("/welcome");
+            rd.forward(request, response);
 
         } catch (SQLException e) {
-            RequestDispatcher view= request.getRequestDispatcher("/contactAddFailure.jsp");
-            view.forward(request,response);
+            RequestDispatcher view = request.getRequestDispatcher("/contactAddFailure.jsp");
+            view.forward(request, response);
             e.printStackTrace();
             throw new RuntimeException(e);
         }

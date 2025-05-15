@@ -23,17 +23,24 @@ public class ContactDAO {
     public Contact createContact(Contact contactdto) throws SQLException {
 //        String query="insert into contacts (full_names,phone_number,id_number,date_of_brith,gender,county) values ('"+contactdto.getFullName()+","+contactdto.getPhoneNumber()+","+contactdto.getIdNumber()+","+contactdto.getDOB()+","+contactdto.getGender()+","+contactdto.getCounty()+
 //                "')";
-        String query = "INSERT INTO contacts (full_names, phone_number, id_number, date_of_brith, county) VALUES ('"
-                + contactdto.getFullName() + "', '"
-                + contactdto.getPhoneNumber() + "', '"
-                + contactdto.getIdNumber() + "', '"
-                + contactdto.getDOB() + "', '"
-                //+ contactdto.getGender() + "', '"
-                + contactdto.getCounty() + "')";
 
-        Statement ps=con.createStatement();
-        int created=ps.executeUpdate(query);
-        ps.close();
+
+
+
+
+
+
+        String query = "INSERT INTO contacts (full_names, phone_number, id_number , date_of_brith, county , user_id ,email_address) values (?,?,?,?,?,?,?)";
+        PreparedStatement stmt= con.prepareStatement(query);
+        stmt.setString(1,contactdto.getFullName());
+        stmt.setInt(2,contactdto.getPhoneNumber());
+        stmt.setInt(3,contactdto.getIdNumber());
+        stmt.setInt(6,contactdto.getUserId());
+        stmt.setDate(4,contactdto.getDOB());
+        stmt.setString(5, contactdto.getCounty());
+        stmt.setString(7,contactdto.getEmailAddress());
+        int created=stmt.executeUpdate();
+        stmt.close();
         if (created==0){
             return null;
         }

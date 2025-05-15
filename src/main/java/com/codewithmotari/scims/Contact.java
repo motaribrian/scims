@@ -20,6 +20,7 @@ public class Contact {
     private Date DOB;
     private String gender;
     private String County;
+    private int userId;
 
     public enum Gender {
         MALE,
@@ -46,7 +47,15 @@ public class Contact {
                 '}';
     }
 
-    public Contact(int id, String fullName, int phoneNumber, String emailAddress, int idNumber, Date DOB, String gender, String County) {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Contact(int id, String fullName, int phoneNumber, String emailAddress, int idNumber, Date DOB, String gender, String county, int userId) {
         this.id = id;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -54,7 +63,8 @@ public class Contact {
         this.idNumber = idNumber;
         this.DOB = DOB;
         this.gender = gender;
-        this.County = County;
+        County = county;
+        this.userId = userId;
     }
 
     public Contact() {
