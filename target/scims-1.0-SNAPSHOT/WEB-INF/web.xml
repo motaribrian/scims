@@ -11,15 +11,25 @@
     </servlet-mapping>
     -->
 
-    <!--welcome servlet -->
+    <!--Login servlet -->
 
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.codewithmotari.scims.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--Welcome servlet -->
     <servlet>
         <servlet-name>WelcomeServlet</servlet-name>
         <servlet-class>com.codewithmotari.scims.WelcomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>WelcomeServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ContactAddServlet</servlet-name>

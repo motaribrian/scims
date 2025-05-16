@@ -56,6 +56,7 @@ public class ContactAddServlet extends HttpServlet {
         if(username==null){
             RequestDispatcher rd= request.getRequestDispatcher("/");
             rd.forward(request,response);
+            return;
         }
         RequestDispatcher view= request.getRequestDispatcher("/contactAdd.jsp");
         view.forward(request,response);
@@ -74,8 +75,10 @@ public class ContactAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         HttpSession session = request.getSession();
         Object username = session.getAttribute("username");
+        System.out.println(username.toString());
 
         if (username == null) {
             RequestDispatcher rd = request.getRequestDispatcher("/");

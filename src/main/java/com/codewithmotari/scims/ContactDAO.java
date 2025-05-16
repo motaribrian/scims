@@ -113,11 +113,11 @@ public class ContactDAO {
     //get a contact if an email is provided
     public List<Contact> getContactbyUser(int  userId) throws SQLException {
         List<Contact> list=new ArrayList<>();
-        Contact contact=new Contact();
         String query="select * FROM contacts WHERE user_id="+userId;
         PreparedStatement ps=con.prepareStatement(query);
         ResultSet rs=ps.executeQuery();
         while(rs.next()){
+            Contact contact=new Contact();
             contact.setFullName(rs.getString("full_names"));
             contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
@@ -126,6 +126,7 @@ public class ContactDAO {
             contact.setCounty(rs.getString("county"));
              list.add(contact);
         }
+        System.out.println("returned from contactDao.getContactByUser () :" +list);
         return list;
     }
 

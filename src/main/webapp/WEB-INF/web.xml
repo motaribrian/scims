@@ -31,6 +31,20 @@
         <servlet-name>WelcomeServlet</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
+
+
+
+
+    <servlet>
+        <servlet-name>ContactUpdate</servlet-name>
+        <servlet-class>com.codewithmotari.scims.ContactUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactUpdate</servlet-name>
+        <url-pattern>/contacts/update</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>ContactAddServlet</servlet-name>
         <servlet-class>com.codewithmotari.scims.ContactAddServlet</servlet-class>

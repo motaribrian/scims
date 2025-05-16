@@ -26,18 +26,22 @@ public class WelcomeServlet extends HttpServlet {
             try {
                 int userId=Factory.getUserService().getUser(username.toString()).getId();
                 list=Factory.getContactServiceimpl().getContactbyUser(userId);
+
+                System.out.println(list.size());
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("empty list passed");
 
             }
             try {
-                req.setAttribute("contacts",list);
+                session.setAttribute("contacts",list);
+                System.out.println("added the list to the request " +session.getAttribute("contacts"));
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("failed to add the list to the request");
             }
-
-            System.out.println("an error occured");
-            resp.sendRedirect("/welcome.jsp");
+            System.out.println("again :"+session.getAttribute("contacts"));
+            req.getRequestDispatcher("welcome.jsp").forward(req,resp);
         }
     }
 
