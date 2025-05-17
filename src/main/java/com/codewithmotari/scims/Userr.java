@@ -14,6 +14,11 @@ public class Userr {
     public Userr() {
     }
 
+    public Userr(int id, String userName) {
+        this.id=id;
+        this.username=userName;
+    }
+
     public int getId() {
         return id;
     }

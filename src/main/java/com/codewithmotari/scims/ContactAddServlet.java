@@ -6,6 +6,7 @@ package com.codewithmotari.scims;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -78,9 +79,10 @@ public class ContactAddServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         Object username = session.getAttribute("username");
-        System.out.println(username.toString());
+
 
         if (username == null) {
+            System.out.println("ContactAddservlet.dopost :" + " username is null" +username.toString());
             RequestDispatcher rd = request.getRequestDispatcher("/");
             rd.forward(request, response);
         }
@@ -98,28 +100,28 @@ public class ContactAddServlet extends HttpServlet {
             String lastName = (String) request.getParameter("lastname");
             String fullName = firstName + " " + lastName;
             int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
+            Date dateofBirth= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));
+            String gender=request.getParameter("gender");
+            System.out.println("ContactAddServlet.doPost() line 106"+gender);
 
-            String emailaddress = (String) request.getParameter("emailaddress");
-            System.out.println(emailaddress);
-            System.out.println(idnumber);
-
-            //Contact.Gender gender= (Contact.Gender) request.getParameter("gender");
-            String county = (String) request.getParameter("county");
-            System.out.println(county);
-
-
+            String emailaddress = request.getParameter("emailaddress");
+            String county = request.getParameter("county");
             Contact contact = new Contact();
             contact.setFullName(fullName);
             contact.setPhoneNumber(phoneNumber);
             contact.setEmailAddress(emailaddress);
             contact.setIdNumber(idnumber);
-            //contact.setGender(gender);
+            contact.setGender(gender);
             contact.setCounty(county);
             contact.setUserId(userId);
+            contact.setDOB(dateofBirth);
             contactService.createContact(contact);
-            RequestDispatcher rd = request.getRequestDispatcher("/welcome");
-            rd.forward(request, response);
+
+            response.sendRedirect("/welcome");
+
+//            RequestDispatcher rd = request.getRequestDispatcher("/welcome");
+//            rd.forward(request, response);
 
         } catch (SQLException | NumberFormatException e) {
             doGet(request,response);

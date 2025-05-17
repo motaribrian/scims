@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
     private final Connection con;
@@ -46,6 +48,20 @@ public class UserDao {
             }
 
         return user;
+
+    }
+
+    public List<Userr> getAllUsers() throws SQLException {
+        List<Userr> users=new ArrayList<>();
+        String query="select * from userrs";
+        PreparedStatement stmt=con.prepareStatement(query);
+        ResultSet rs=stmt.executeQuery();
+
+        while (rs.next()){
+            Userr userr=new Userr(rs.getInt("id"), rs.getString("user_name"));
+            users.add(userr);
+        }
+        return users;
 
     }
 }

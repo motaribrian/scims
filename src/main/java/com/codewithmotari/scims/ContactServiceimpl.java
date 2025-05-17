@@ -32,4 +32,15 @@ public class ContactServiceimpl implements ContactService {
     public List<Contact> getContactbyUser(int userId) throws SQLException {
         return contactdao.getContactbyUser(userId);
     }
+
+    @Override
+    public void updateContact(Contact contact) throws SQLException {
+        contactdao.updateContact(contact);
+    }
+
+    @Override
+    public void deleteUser(int id) throws SQLException {
+
+        contactdao.deleteContact(id);
+    }
 }

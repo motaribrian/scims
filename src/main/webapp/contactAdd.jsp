@@ -36,6 +36,12 @@ Contact createContact(String name,String email,String phone){
         <label for="emailaddress" class="form-label">Email Address</label>
         <input type="email" class="form-control" id="emailaddress" name="emailaddress" placeholder="johndoe@email.mail">
     </div>
+
+        <div class="col-10">
+            <label for="date_of_birth" class="form-label">Date of birth</label>
+            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="johndoe@email.mail">
+        </div>
+
     <div class="col-10">
         <label for="idnumber" class="form-label">ID Number</label>
         <input type="number" class="form-control" name="idnumber" id="idnumber">
@@ -46,13 +52,18 @@ Contact createContact(String name,String email,String phone){
         <select id="gender" class="form-select" name="gender">
             <option selected>Male</option>
             <option>Female</option>
-            <option></option>
+            <option>NonBinary</option>
         </select>
     </div>
-    <div class="col-10">
-        <label for="county" class="form-label">County of Residence</label>
-        <input type="text" class="form-control" id="county" name="county">
-    </div>
+        <div class="col-md-10">
+            <label for="county" class="county">County</label>
+            <select id="county" class="form-select" name="county">
+            <>
+                <option selected>County1</option>
+                <option>County2</option>
+                <option>County3</option>
+            </select>
+        </div>
     <%=
         new java.util.Date()
      %>

@@ -46,6 +46,15 @@
 
 
     <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.codewithmotari.scims.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ContactAddServlet</servlet-name>
         <servlet-class>com.codewithmotari.scims.ContactAddServlet</servlet-class>
     </servlet>
@@ -53,6 +62,17 @@
         <servlet-name>ContactAddServlet</servlet-name>
         <url-pattern>/contacts/add</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ContactDeleteServlet</servlet-name>
+        <servlet-class>com.codewithmotari.scims.ContactDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactDeleteServlet</servlet-name>
+        <url-pattern>/contacts/delete</url-pattern>
+    </servlet-mapping>
+
+
     <session-config>
         <session-timeout>
             30

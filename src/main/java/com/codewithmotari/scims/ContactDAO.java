@@ -30,7 +30,7 @@ public class ContactDAO {
 
 
 
-        String query = "INSERT INTO contacts (full_names, phone_number, id_number , date_of_brith, county , user_id ,email_address) values (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO contacts (full_names, phone_number, id_number , date_of_brith, county , user_id ,email_address,gender) values (?,?,?,?,?,?,?,?)";
         PreparedStatement stmt= con.prepareStatement(query);
         stmt.setString(1,contactdto.getFullName());
         stmt.setInt(2,contactdto.getPhoneNumber());
@@ -39,12 +39,33 @@ public class ContactDAO {
         stmt.setDate(4,contactdto.getDOB());
         stmt.setString(5, contactdto.getCounty());
         stmt.setString(7,contactdto.getEmailAddress());
+        stmt.setString(8,contactdto.getGender());
         int created=stmt.executeUpdate();
         stmt.close();
         if (created==0){
             return null;
         }
         return contactdto;
+    }
+
+
+
+    public void updateContact(Contact contactdto) {
+        String query = "UPDATE contacts SET full_names = ?, phone_number = ?, email_address=?, id_number=?,date_of_brith = ?, county = ? ,gender=? WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, contactdto.getFullName());
+            stmt.setInt(2, contactdto.getPhoneNumber());
+            stmt.setString(3, contactdto.getEmailAddress());
+            stmt.setInt(4, contactdto.getIdNumber());
+            stmt.setDate(5, contactdto.getDOB());
+            stmt.setString(6, contactdto.getCounty());
+            stmt.setString(7,contactdto.getGender());
+            stmt.setInt(8, contactdto.getId());  // WHERE clause
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -81,10 +102,10 @@ public class ContactDAO {
         PreparedStatement ps=con.prepareStatement(query);
         ResultSet rs=ps.executeQuery();
         if (rs.next()){
-            contact.setFullName(rs.getString("full_name"));
+            contact.setFullName(rs.getString("full_names"));
             contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
-            contact.setDOB(rs.getDate("date_of_birth"));
+            contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
             contact.setCounty(rs.getString("county"));
         }
@@ -118,6 +139,7 @@ public class ContactDAO {
         ResultSet rs=ps.executeQuery();
         while(rs.next()){
             Contact contact=new Contact();
+            contact.setId(rs.getInt("id"));
             contact.setFullName(rs.getString("full_names"));
             contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
@@ -126,12 +148,15 @@ public class ContactDAO {
             contact.setCounty(rs.getString("county"));
              list.add(contact);
         }
-        System.out.println("returned from contactDao.getContactByUser () :" +list);
         return list;
     }
 
 
-    public boolean updateContact(Contact contact){return false;}
-    public void deleteContact(Contact contact){}
+    public void deleteContact(int contact) throws SQLException {
+        String query="Delete from contacts where id='"+contact+"'";
+        PreparedStatement ps=con.prepareStatement(query);
+        ps.executeUpdate();
+
+    }
     
 }

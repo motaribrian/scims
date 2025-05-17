@@ -1,6 +1,7 @@
 package com.codewithmotari.scims;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserService {
     private UserDao userDao;
@@ -18,5 +19,9 @@ public class UserService {
     public Userr getUser(int id) throws SQLException {
 
         return userDao.getUserr(id);
+    }
+
+    public List<Userr> getAllUsers() throws SQLException {
+        return userDao.getAllUsers();
     }
 }

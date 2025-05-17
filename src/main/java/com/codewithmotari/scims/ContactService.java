@@ -8,4 +8,8 @@ public interface ContactService {
     public Contact getContact(int id)throws SQLException;
     public boolean createContact(Contact contact) throws SQLException;
     public List<Contact> getContactbyUser(int userId) throws SQLException;
+
+    public void updateContact(Contact contact) throws SQLException;
+
+    void deleteUser(int id) throws SQLException;
 }

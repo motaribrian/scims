@@ -22,16 +22,6 @@ public class Contact {
     private String County;
     private int userId;
 
-    public enum Gender {
-        MALE,
-        FEMALE,
-        NONBINARY;
-
-        @Override
-        public String toString() {
-            return "Gender{}";
-        }
-    }
 
     @Override
     public String toString() {

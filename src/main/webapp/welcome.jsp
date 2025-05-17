@@ -53,7 +53,6 @@
 
             // Retrieve the list of contacts from the session
             List<Contact> contacts = (List<Contact>) session.getAttribute("contacts");
-            System.out.println(contacts);
             // Check if contacts are available and not empty
             if (contacts != null && !contacts.isEmpty()) {
                 for (Contact contact : contacts) {
@@ -65,8 +64,8 @@
             <td><%= contact.getDOB() %></td>
             <td><%= contact.getGender() %></td>
             <td><%= contact.getCounty() %></td>
-            <td><a href="/contacts/update?id=<%= contact.getId() %>&update=true" class="btn btn-warning">Update</a></td>
-            <td><a href="/contacts/update?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>
+            <td><a href="/contacts/update?id=<%=contact.getId()  %>" class="btn btn-warning">Update</a></td>
+            <td><a href="/contacts/delete?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>
         </tr>
         <%
                 }
