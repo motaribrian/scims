@@ -12,4 +12,9 @@ public interface ContactService {
     public void updateContact(Contact contact) throws SQLException;
 
     void deleteUser(int id) throws SQLException;
+    List<Contact> getContactByGender(String gender) throws SQLException;
+
+    List<Contact> getContactByCounty(String count) throws SQLException;
+
+    List<Contact> getLastnContacts(int i) throws SQLException;
 }

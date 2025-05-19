@@ -1,15 +1,39 @@
 package com.codewithmotari.scims;
 
+import com.google.gson.Gson;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            //req.setAttribute("males",Factory.getContactServiceimpl().getContactByGender("male"));
+            resp.setCharacterEncoding("UTF-8");
+            Map<String,List<Contact>> lastn=new HashMap<>();
+            AdminService adminservice=new AdminService();
+            Gson gson=new Gson();
+            Map<String, Map<String,List<Contact>>> responseMap=new HashMap<>();
+            responseMap.put("Gender",adminservice.getUsersByGender(new String[]{"male","female","nonBinary"}));
+            responseMap.put("Counties",adminservice.getUsersByCounty(new String[]{"county1","county2","County3"}));
+            responseMap.put("last5Added",adminservice.getLastnaddedcontacts(5));
+            //resp.getWriter().write(gson.toJson(responseMap));
+
+            req.setAttribute("admindto",responseMap);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+//        will uncomment later for now lets just parse json
         RequestDispatcher view=req.getRequestDispatcher("/admin.jsp");
         view.forward(req,resp);
     }

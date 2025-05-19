@@ -6,6 +6,7 @@ package com.codewithmotari.scims;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -158,5 +159,69 @@ public class ContactDAO {
         ps.executeUpdate();
 
     }
-    
+
+    public  List<Contact> getContactsByGender(String gender) throws SQLException {
+        List<Contact> list=new LinkedList<>();
+        String query ="SELECT * FROM contacts WHERE gender = ? ";
+        PreparedStatement ps=con.prepareStatement(query);
+        ps.setString(1,gender);
+        ResultSet rs= ps.executeQuery();
+        while (rs.next()){
+            Contact contact=new Contact();
+            contact.setId(rs.getInt("id"));
+            contact.setFullName(rs.getString("full_names"));
+            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setEmailAddress(rs.getString("email_address"));
+            contact.setDOB(rs.getDate("date_of_brith"));
+            contact.setGender(rs.getString("gender"));
+            contact.setCounty(rs.getString("county"));
+            contact.setUserId(rs.getInt("user_id"));
+            list.add(contact);
+        }
+        return list;
+    }
+
+    public List<Contact> getContactByCounty(String count) throws SQLException {
+
+        List<Contact> list=new LinkedList<>();
+        String query ="SELECT * FROM contacts WHERE county = ? ";
+        PreparedStatement ps=con.prepareStatement(query);
+        ps.setString(1,count);
+        ResultSet rs= ps.executeQuery();
+        while (rs.next()){
+            Contact contact=new Contact();
+            contact.setId(rs.getInt("id"));
+            contact.setFullName(rs.getString("full_names"));
+            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setEmailAddress(rs.getString("email_address"));
+            contact.setDOB(rs.getDate("date_of_brith"));
+            contact.setGender(rs.getString("gender"));
+            contact.setCounty(rs.getString("county"));
+            contact.setUserId(rs.getInt("user_id"));
+            list.add(contact);
+        }
+        return list;
+    }
+
+    public List<Contact> getLastNContacts(int count) throws SQLException {
+
+        List<Contact> list=new LinkedList<>();
+        String query ="SELECT * FROM contacts ORDER BY id DESC LIMIT ?";
+        PreparedStatement ps=con.prepareStatement(query);
+        ps.setInt(1, count);
+        ResultSet rs= ps.executeQuery();
+        while (rs.next()){
+            Contact contact=new Contact();
+            contact.setId(rs.getInt("id"));
+            contact.setFullName(rs.getString("full_names"));
+            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setEmailAddress(rs.getString("email_address"));
+            contact.setDOB(rs.getDate("date_of_brith"));
+            contact.setGender(rs.getString("gender"));
+            contact.setCounty(rs.getString("county"));
+            contact.setUserId(rs.getInt("user_id"));
+            list.add(contact);
+        }
+        return list;
+    }
 }

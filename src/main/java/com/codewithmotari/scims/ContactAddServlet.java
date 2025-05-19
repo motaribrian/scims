@@ -103,7 +103,6 @@ public class ContactAddServlet extends HttpServlet {
             Date dateofBirth= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));
             String gender=request.getParameter("gender");
-            System.out.println("ContactAddServlet.doPost() line 106"+gender);
 
             String emailaddress = request.getParameter("emailaddress");
             String county = request.getParameter("county");
@@ -124,6 +123,7 @@ public class ContactAddServlet extends HttpServlet {
 //            rd.forward(request, response);
 
         } catch (SQLException | NumberFormatException e) {
+            e.printStackTrace();
             doGet(request,response);
         }
 

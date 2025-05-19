@@ -43,4 +43,19 @@ public class ContactServiceimpl implements ContactService {
 
         contactdao.deleteContact(id);
     }
+
+    @Override
+    public List<Contact> getContactByGender(String gender) throws SQLException {
+        return contactdao.getContactsByGender(gender);
+    }
+
+    @Override
+    public List<Contact> getContactByCounty(String count) throws SQLException {
+        return contactdao.getContactByCounty(count);
+    }
+
+    @Override
+    public List<Contact> getLastnContacts(int i) throws SQLException {
+        return contactdao.getLastNContacts(i);
+    }
 }
