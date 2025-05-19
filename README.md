@@ -1,5 +1,5 @@
 # SCIMS
-
+### Smart Contact Information Management System
 Scims is a java contact management system.
 
 ## Installation
