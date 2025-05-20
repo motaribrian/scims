@@ -4,12 +4,11 @@
         <servlet-name>ContactServlet</servlet-name>
         <servlet-class>com.codewithmotari.scims.ContactServlet</servlet-class>
     </servlet>
-    <!--
     <servlet-mapping>
         <servlet-name>ContactServlet</servlet-name>
-        <url-pattern>/contact</url-pattern>
+        <url-pattern>/scims/contact</url-pattern>
     </servlet-mapping>
-    -->
+
 
     <!--Login servlet -->
 
@@ -19,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/scims/</url-pattern>
     </servlet-mapping>
 
     <!--Welcome servlet -->
@@ -29,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>WelcomeServlet</servlet-name>
-        <url-pattern>/welcome</url-pattern>
+        <url-pattern>/scims/welcome</url-pattern>
     </servlet-mapping>
 
 
@@ -41,7 +40,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactUpdate</servlet-name>
-        <url-pattern>/contacts/update</url-pattern>
+        <url-pattern>/scims/contacts/update</url-pattern>
     </servlet-mapping>
 
 
@@ -51,7 +50,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/admin</url-pattern>
+        <url-pattern>/scims/admin</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -60,7 +59,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactAddServlet</servlet-name>
-        <url-pattern>/contacts/add</url-pattern>
+        <url-pattern>/scims/contacts/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -69,7 +68,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactDeleteServlet</servlet-name>
-        <url-pattern>/contacts/delete</url-pattern>
+        <url-pattern>/scims/contacts/delete</url-pattern>
     </servlet-mapping>
 
 
