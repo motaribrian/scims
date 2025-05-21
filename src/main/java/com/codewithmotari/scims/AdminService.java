@@ -36,6 +36,7 @@ public class AdminService {
 
 
     public Map<String, List<Contact>> getUsersByCounty(String[] county) throws SQLException {
+            //HttpResponse<String> response=Unirest.get();
         for(String count :county){
             List<Contact> contactsgender=contactService.getContactByCounty(count);
             usersByCounty.put(count.toUpperCase(),contactsgender);

@@ -4,9 +4,7 @@
 contentType="text/html;charset=UTF-8"
 %>
 
-Contact createContact(String name,String email,String phone){
-    Contact contact=new Contact();
-}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,65 +13,107 @@ Contact createContact(String name,String email,String phone){
     <title>Please Add the new Contact</title>
 </head>
 <body>
-<h1>Contact Add Form</h1>
+<h1 class="text-uppercase text-center">Contact Add Form</h1>
 
 
 
-<form class="row g-3" style="margin:auto;" method="POST" >
-    <div class="col-md-5">
-        <label for="firstname" class="form-label">First Name</label>
+<form class="row g-3 w-50 needs-validation" style="margin:auto;" method="POST" >
+    <div class="col-md-12">
+        <label for="firstname" class="form-label">Full Name</label>
         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="john">
     </div>
-    <div class="col-md-5">
-        <label for="lastname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastname" name"lastname" placeholder="doe">
-    </div>
-    <div class="col-10">
+
+    <div class="col-12">
         <label for="phonenumber" class="form-label">Phone Number</label>
         <input type="number" class="form-control" id="phonenumber" name="phonenumber" placeholder="0700000000">
-    </div>
-    <div class="col-10">
+    </div><br>
+    <div class="col-12">
         <label for="emailaddress" class="form-label">Email Address</label>
         <input type="email" class="form-control" id="emailaddress" name="emailaddress" placeholder="johndoe@email.mail">
-    </div>
+    </div><br>
 
-        <div class="col-10">
+        <div class="col-12">
             <label for="date_of_birth" class="form-label">Date of birth</label>
             <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="johndoe@email.mail">
-        </div>
+        </div><br>
 
-    <div class="col-10">
+    <div class="col-12">
         <label for="idnumber" class="form-label">ID Number</label>
         <input type="number" class="form-control" name="idnumber" id="idnumber">
-    </div>
+    </div><br>
 
-    <div class="col-md-10">
+    <div class="col-md-12">
         <label for="gender" class="form-label">Gender</label>
         <select id="gender" class="form-select" name="gender">
             <option selected>Male</option>
             <option>Female</option>
             <option>NonBinary</option>
         </select>
-    </div>
-        <div class="col-md-10">
+    </div><br>
+        <div class="col-md-12">
             <label for="county" class="county">County</label>
             <select id="county" class="form-select" name="county">
             <>
-                <option selected>County1</option>
-                <option>County2</option>
-                <option>County3</option>
+                <option selected>County</option>
+                <option>Mombasa</option>
+                <option>Kwale</option>
+                <option>Kilifi</option>
+                <option>Tana-River</option>
+                <option>Lamu</option>
+                <option>Taita-Taveta</option>
+                <option>Garissa</option>
+                <option>Wajir</option>
+                <option>Mandera</option>
+                <option>Marsabit</option>
+                <option>Isiolo</option>
+                <option>Meru</option><option>Tharaka-Nithi</option>
+                <option>Embu</option>
+                <option>Kitui</option>
+                <option>Machakos</option>
+                <option>Makueni</option>
+                <option>Nyandarua</option>
+                <option>Kirinyaga</option>
+                <option>Nyeri</option>
+                <option>Muranga</option>
+                <option>Kiambu</option>
+                <option>Turkana</option>
+                <option>West-pokot</option>
+                <option>Samburu</option>
+                <option>Trans-Nzoia</option>
+                <option>Uasin-Gishu</option>
+                <option>Elgeyo-Marakwet</option>
+                <option>Nandi</option>
+                <option>Baringo</option>
+                <option>Laikipia</option>
+                <option>Nakuru</option>
+                <option>Narok</option>
+                <option>Kajiado</option>
+                <option>Kericho</option>
+                <option>Bomet</option>
+                <option>Kakamega</option>
+                <option>Vihiga</option>
+                <option>Bungoma</option>
+                <option>Busia</option>
+                <option>Siaya</option>
+                <option>Kisumu</option>
+                <option>Homa-Bay</option>
+                <option>Migori</option>
+                <option>Kisii</option>
+                <option>Nyamira</option>
+                <option>Nairobi</option>
+                
+ 
+                
             </select>
-        </div>
-    <%=
-        new java.util.Date()
-     %>
+        </div><br>
 
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary btn-lg")">Register</button>
-    </div>
+
+    <div   class="row g-3 w-50">
+        <button type="submit" class="col-5 btn btn-primary btn-lg")">Register</button>
+    </div><br>
 </form>
-
-    <form action="/" method="get">
+     <br>
+    <form action="/" method="get" class="w-50>
     <button type="submit" class="btn btn-outline-danger">Log Out</button>
     </form>
 

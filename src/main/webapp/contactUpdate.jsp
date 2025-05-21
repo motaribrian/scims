@@ -10,42 +10,37 @@
 <body>
 
 <% Contact contact=(Contact) request.getAttribute("contact"); %>
-<h1>Update  <%= contact.getFullName() %> </h1>
-
-    <h2><%=
-        new java.util.Date()
-     %></h2>
+<h1 class="text-center">Update  <%= contact.getFullName() %> </h1>
 
 
-<form class="row g-3" style="margin:auto;" method="POST" >
-    <div class="col-md-5">
-        <label for="firstname" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstname" name="firstname" value="<%= contact.getFullName() %>">
+
+<form class="row g-3 w-50 needs-validation" style="margin:auto" style="margin:auto;" method="POST" action="/contacts/update?id=<%=contact.getId()  %>" >
+        <div class="col-md-12">
+        <label for="fullname" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" value="<%= contact.getFullName() %>">
     </div>
-    <div class="col-md-5">
-        <label for="lastname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastname" name"lastname" value="<%= contact.getFullName() %>">
-    </div>
-    <div class="col-10">
+
+
+    <div class="col-12">
         <label for="phonenumber" class="form-label">Phone Number</label>
         <input type="number" class="form-control" id="phonenumber" name="phonenumber" value="<%= contact.getPhoneNumber() %>">
     </div>
-    <div class="col-10">
+    <div class="col-12">
         <label for="emailaddress" class="form-label">Email Address</label>
         <input type="email" class="form-control" id="emailaddress" name="emailaddress" value="<%= contact.getEmailAddress() %>">
     </div>
 
-            <div class="col-10">
+            <div class="col-12">
                 <label for="date_of_birth" class="form-label">Date of birth</label>
-                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="johndoe@email.mail">
+                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<%= contact.getDOB() %>">
             </div>
 
-    <div class="col-10">
+    <div class="col-12">
         <label for="idnumber" class="form-label">ID Number</label>
         <input type="number" class="form-control" name="idnumber" id="idnumber" value="<%= contact.getIdNumber() %>">
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-12">
         <label for="gender" class="form-label">Gender</label>
         <select id="gender" class="form-select" name="gender" value="<%= contact.getGender() %>">
             <option selected>Male</option>

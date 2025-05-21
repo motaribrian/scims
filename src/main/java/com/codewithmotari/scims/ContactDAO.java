@@ -63,7 +63,7 @@ public class ContactDAO {
             stmt.setString(7,contactdto.getGender());
             stmt.setInt(8, contactdto.getId());  // WHERE clause
 
-            stmt.executeUpdate();
+            System.out.println("contactdao.update returned :"+stmt.executeUpdate());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,8 +85,10 @@ public class ContactDAO {
             try{
            c.setDOB(rs.getDate("date_of_brith"));} catch (SQLException e) {
                 c.setDOB(null);
+                System.out.print("contactdao.update null date");
                 throw new RuntimeException(e);
             }
+            c.setIdNumber(rs.getInt("id_number"));
             c.setGender(rs.getString("gender"));
             c.setCounty(rs.getString("county"));
 
@@ -107,6 +109,7 @@ public class ContactDAO {
             contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
+            contact.setIdNumber(rs.getInt("id_number"));
             contact.setGender(rs.getString("gender"));
             contact.setCounty(rs.getString("county"));
         }

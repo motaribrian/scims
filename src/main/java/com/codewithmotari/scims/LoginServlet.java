@@ -32,6 +32,18 @@ public class LoginServlet extends HttpServlet {
             if(authenticated){
                 HttpSession session=req.getSession();
                 session.setAttribute("username",username);
+                String isAdmin="hey";
+                try {
+                    isAdmin= req.getParameter("isAdmin");
+                } catch (Exception e) {
+                    isAdmin="false";
+                }
+
+                if("on".equals(isAdmin)){
+                    session.setAttribute("isAdmin",true);
+                    resp.sendRedirect("/admin");
+                    return;
+                }
                 resp.sendRedirect("/welcome");
 
             }

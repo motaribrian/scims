@@ -96,9 +96,7 @@ public class ContactAddServlet extends HttpServlet {
 
 
         try {
-            String firstName = request.getParameter("firstname");
-            String lastName = (String) request.getParameter("lastname");
-            String fullName = firstName + " " + lastName;
+            String fullName = request.getParameter("firstname");
             int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
             Date dateofBirth= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));

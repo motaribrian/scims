@@ -14,8 +14,8 @@ import java.sql.SQLException;
  */
 public  class DBConnection {
     private static Connection con;
-    private static final String username="root";
-    private static final String password="Zurion";
+    private static final String username="toor";
+    private static final String password="toor";
     private static final String url="jdbc:mysql://localhost:3306/ContactRegistry";
 
     static{

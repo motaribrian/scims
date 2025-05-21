@@ -35,6 +35,7 @@ public class ContactServiceimpl implements ContactService {
 
     @Override
     public void updateContact(Contact contact) throws SQLException {
+        System.out.println("contac6tserviceimpl updateContact");
         contactdao.updateContact(contact);
     }
 

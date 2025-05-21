@@ -43,55 +43,50 @@ public class ContactUpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("you hit the method");
         HttpSession session = request.getSession();
         Object username = session.getAttribute("username");
 
         if (username == null) {
+
             RequestDispatcher rd = request.getRequestDispatcher("/");
             rd.forward(request, response);
         }
+        System.out.println("username is not null");
         int userId;
         try {
             userId = userService.getUser((String) username).getId();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-
-
-        try {
-            String firstName = request.getParameter("firstname");
-            String lastName = (String) request.getParameter("lastname");
-            String fullName = firstName + " " + lastName;
+            String fullName = (String) request.getParameter("fullname");
             int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
-            int idnumber = Integer.parseInt(request.getParameter("idnumber"));
-
             String emailaddress = (String) request.getParameter("emailaddress");
-            System.out.println(idnumber);
-
+            Date dob= Date.valueOf(request.getParameter("date_of_birth"));
+            int idnumber = Integer.parseInt(request.getParameter("idnumber"));
             String gender= request.getParameter("gender");
             String county = request.getParameter("county");
-            System.out.println(county);
-            Date dob= Date.valueOf(request.getParameter("date_of_birth"));
 
 
             Contact contact = new Contact();
-            contact.setId(userId);
+            contact.setId(Integer.parseInt(request.getParameter("id")));
             contact.setFullName(fullName);
             contact.setPhoneNumber(phoneNumber);
             contact.setEmailAddress(emailaddress);
             contact.setIdNumber(idnumber);
             contact.setGender(gender);
             contact.setCounty(county);
-            contact.setUserId(userId);
             contact.setDOB(dob);
+            System.out.println("servlet created update dao");
             contactservice.updateContact(contact);
+            System.out.println("contactupdateservlet dopost");
             response.sendRedirect("/welcome");
         } catch (NumberFormatException e) {
+            System.out.println("contactupdateservlet dopost numer excemption");
+
             doGet(request,response);
         } catch (SQLException e) {
             System.out.println("failed to update ");
-            throw new RuntimeException(e);
+
+
         }
 
     }

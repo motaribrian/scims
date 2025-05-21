@@ -23,6 +23,7 @@ public class WelcomeServlet extends HttpServlet {
         Object username=  session.getAttribute("username");
         //if a user ain't authenticated
         if(username==null){
+            System.out.println("user not authenticated welcomeservletdoget");
             resp.sendRedirect("/login.jsp");
 
         }
