@@ -29,6 +29,19 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>3.0.19</version> <!-- Or latest compatible with your JasperReports version -->
+        </dependency>
+
+
+                <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.17.0</version>
+        </dependency>
         
         <!-- https://mvnrepository.com/artifact/com.networkingx/okHttpClient -->
         

@@ -24,4 +24,8 @@ public class UserService {
     public List<Userr> getAllUsers() throws SQLException {
         return userDao.getAllUsers();
     }
+
+    public Userr addUser(Userr user) throws SQLException {
+        return userDao.addUser(user);
+    }
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <%@ page import="com.codewithmotari.scims.Contact" %>
 <%@ page language="java"
@@ -11,21 +12,38 @@ contentType="text/html;charset=UTF-8"
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <title>Please Add the new Contact</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- intl-tel-input CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- intl-tel-input JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <!-- Bootstrap JS (optional, for additional Bootstrap components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <h1 class="text-uppercase text-center">Contact Add Form</h1>
 
 
 
-<form class="row g-3 w-50 needs-validation" style="margin:auto;" method="POST" >
+<form class="row g-3 w-50 needs-validation" style="margin:auto;" method="POST" enctype="multipart/form-data" >
     <div class="col-md-12">
         <label for="firstname" class="form-label">Full Name</label>
         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="john">
     </div>
 
+
+
     <div class="col-12">
         <label for="phonenumber" class="form-label">Phone Number</label>
-        <input type="number" class="form-control" id="phonenumber" name="phonenumber" placeholder="0700000000">
+        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="0700000000">
     </div><br>
     <div class="col-12">
         <label for="emailaddress" class="form-label">Email Address</label>
@@ -41,6 +59,9 @@ contentType="text/html;charset=UTF-8"
         <label for="idnumber" class="form-label">ID Number</label>
         <input type="number" class="form-control" name="idnumber" id="idnumber">
     </div><br>
+
+    <label class="form-label" for="idfile">Please Upload your ID</label>
+    <input type="file" class="form-control" id="idfile" name="idfile" />
 
     <div class="col-md-12">
         <label for="gender" class="form-label">Gender</label>
@@ -101,22 +122,38 @@ contentType="text/html;charset=UTF-8"
                 <option>Kisii</option>
                 <option>Nyamira</option>
                 <option>Nairobi</option>
-                
- 
-                
+
+
+
             </select>
         </div><br>
 
 
-    <div   class="row g-3 w-50">
-        <button type="submit" class="col-5 btn btn-primary btn-lg")">Register</button>
+    <div   class="col-md-12">
+        <button type="submit" class="col-12 btn btn-primary btn-lg">Register</button>
     </div><br>
 </form>
      <br>
-    <form action="/" method="get" class="w-50>
+    <form action="/" method="get" class="row g-3 w-50 "style="margin:auto;">
     <button type="submit" class="btn btn-outline-danger">Log Out</button>
     </form>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+            initialCountry: "auto",
+            geoIpLookup: function(callback) {
+                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "us";
+                    callback(countryCode);
+                });
+            },
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        });
+    });
+</script>
+
 </body>
 </html>

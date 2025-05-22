@@ -35,6 +35,15 @@
 <h2>WELCOME <%= username %></h2>
 <hr>
 
+
+<div class="input-group input-group-lg">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Filter By</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+
 <table class="table">
     <thead>
         <tr>

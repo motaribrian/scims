@@ -21,7 +21,15 @@ public class Contact {
     private String gender;
     private String County;
     private int userId;
+    private String filepath;
 
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
 
     @Override
     public String toString() {

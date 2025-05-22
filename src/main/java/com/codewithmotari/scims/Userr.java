@@ -5,6 +5,25 @@ public class Userr {
     private String username;
     private String password;
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    private String fullName;
+    private String role;
+
     public Userr(int id, String password, String username) {
         this.id = id;
         this.password = password;

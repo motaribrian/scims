@@ -64,4 +64,19 @@ public class UserDao {
         return users;
 
     }
+
+    public Userr addUser(Userr user) throws SQLException {
+        String query = "INSERT INTO userrs (fullName, user_name, password , role) values (?,?,?,?)";
+        PreparedStatement stmt= con.prepareStatement(query);
+        stmt.setString(1,user.getFullName());
+        stmt.setString(2,user.getUsername());
+        stmt.setString(3,user.getPassword());
+        stmt.setString(4,user.getRole());
+        int result=stmt.executeUpdate();
+        stmt.close();
+        if (result==0){
+            return null;
+        }
+        return user;
+    }
 }

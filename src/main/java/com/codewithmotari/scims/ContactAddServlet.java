@@ -4,6 +4,7 @@
  */
 package com.codewithmotari.scims;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -11,15 +12,18 @@ import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.*;
 
 /**
  *
  * @author ztl
  */
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+        maxFileSize = 1024 * 1024 * 10,      // 10 MB
+        maxRequestSize = 1024 * 1024 * 100   // 100 MB
+)
 public class ContactAddServlet extends HttpServlet {
     private ContactService contactService;
     private UserService userService;
@@ -82,7 +86,7 @@ public class ContactAddServlet extends HttpServlet {
 
 
         if (username == null) {
-            System.out.println("ContactAddservlet.dopost :" + " username is null" +username.toString());
+           // System.out.println("ContactAddservlet.dopost :" + " username is null" +username.toString());
             RequestDispatcher rd = request.getRequestDispatcher("/");
             rd.forward(request, response);
         }
@@ -93,6 +97,35 @@ public class ContactAddServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
+//        String basepath="/idphotos/"+username+"/"+request.getParameter("firstname");
+//        File file=new File(basepath, (String) username);
+//        if(!file.exists()){
+//            file.mkdirs();
+//        }
+//        for(Part part:request.getParts()){
+//            part.write(filename);
+//        }
+
+
+        String firstname = request.getParameter("firstname");
+
+// Define base directory (should be an absolute path in production)
+        String basePath = System.getProperty("user.home");  // Example: "/var/www/myapp/idphotos"
+
+        File uploadDir = new File(basePath, (String) username);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();  // Create user folder
+        }
+
+// Now define actual file path (you can use original filename or generate one)
+        String fileName = firstname + ".jpg";  // You might want to sanitize or get original filename
+        File outputFile = new File(uploadDir, fileName);
+        System.out.println(outputFile.getAbsolutePath()+"yoooh");
+
+        for (Part part : request.getParts()) {
+
+            part.write(outputFile.getAbsolutePath());  // <- This is the correct file path
+        }
 
 
         try {
@@ -101,7 +134,6 @@ public class ContactAddServlet extends HttpServlet {
             Date dateofBirth= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));
             String gender=request.getParameter("gender");
-
             String emailaddress = request.getParameter("emailaddress");
             String county = request.getParameter("county");
             Contact contact = new Contact();
@@ -113,6 +145,7 @@ public class ContactAddServlet extends HttpServlet {
             contact.setCounty(county);
             contact.setUserId(userId);
             contact.setDOB(dateofBirth);
+            contact.setFilepath(outputFile.getAbsolutePath());
             contactService.createContact(contact);
 
             response.sendRedirect("/welcome");

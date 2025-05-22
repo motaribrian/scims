@@ -25,13 +25,7 @@ public class ContactDAO {
 //        String query="insert into contacts (full_names,phone_number,id_number,date_of_brith,gender,county) values ('"+contactdto.getFullName()+","+contactdto.getPhoneNumber()+","+contactdto.getIdNumber()+","+contactdto.getDOB()+","+contactdto.getGender()+","+contactdto.getCounty()+
 //                "')";
 
-
-
-
-
-
-
-        String query = "INSERT INTO contacts (full_names, phone_number, id_number , date_of_brith, county , user_id ,email_address,gender) values (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO contacts (full_names, phone_number, id_number , date_of_brith, county , user_id ,email_address,gender,idfile) values (?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt= con.prepareStatement(query);
         stmt.setString(1,contactdto.getFullName());
         stmt.setInt(2,contactdto.getPhoneNumber());
@@ -41,6 +35,7 @@ public class ContactDAO {
         stmt.setString(5, contactdto.getCounty());
         stmt.setString(7,contactdto.getEmailAddress());
         stmt.setString(8,contactdto.getGender());
+        stmt.setString(9,contactdto.getFilepath());
         int created=stmt.executeUpdate();
         stmt.close();
         if (created==0){
@@ -226,5 +221,28 @@ public class ContactDAO {
             list.add(contact);
         }
         return list;
+    }
+
+    public String[] getDistinctGenders() throws SQLException {
+        List<String> list=new LinkedList<>();
+        String query ="SELECT DISTINCT(gender) FROM contacts";
+        PreparedStatement ps=con.prepareStatement(query);
+        ResultSet rs=ps.executeQuery();
+        while (rs.next()){
+            list.add(rs.getString("gender"));
+        }
+        return list.toArray(new String[list.size()]);
+
+    }
+
+    public String[] getDistinctCounties() throws SQLException {
+        List<String> list=new LinkedList<>();
+        String query ="SELECT DISTINCT(county) FROM contacts";
+        PreparedStatement ps=con.prepareStatement(query);
+        ResultSet rs=ps.executeQuery();
+        while (rs.next()){
+            list.add(rs.getString("county"));
+        }
+        return list.toArray(new String[list.size()]);
     }
 }

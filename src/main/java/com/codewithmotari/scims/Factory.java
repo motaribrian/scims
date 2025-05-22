@@ -10,6 +10,21 @@ public class Factory {
     private static ContactDAO contactDAO;
     private static UserDao userdao;
     private static UserService userservice;
+    private static JasperReportService jasperreportService;
+
+
+    public static JasperReportService getJasperReportService() {
+        if(jasperreportService==null){
+            jasperreportService=new JasperReportService();
+        }
+        return jasperreportService;
+    }
+
+    public static void setJasperReportService(JasperReportService jasperReportService) {
+        Factory.jasperReportService = jasperReportService;
+    }
+
+    private static JasperReportService jasperReportService;
 
     public Factory() throws SQLException {
         contactServiceimpl = new ContactServiceimpl();

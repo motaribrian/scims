@@ -29,6 +29,7 @@ public class WelcomeServlet extends HttpServlet {
         }
         //if a user is authenticated
         else{
+
             List<Contact> list = null;
             try {
                 int userId=Factory.getUserService().getUser(username.toString()).getId();

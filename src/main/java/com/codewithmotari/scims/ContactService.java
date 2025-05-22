@@ -17,4 +17,5 @@ public interface ContactService {
     List<Contact> getContactByCounty(String count) throws SQLException;
 
     List<Contact> getLastnContacts(int i) throws SQLException;
+    List<Contact> getByCountyorGender(String gender) throws SQLException;
 }

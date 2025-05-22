@@ -59,4 +59,10 @@ public class ContactServiceimpl implements ContactService {
     public List<Contact> getLastnContacts(int i) throws SQLException {
         return contactdao.getLastNContacts(i);
     }
+
+    @Override
+    public List<Contact> getByCountyorGender(String gender) throws SQLException {
+        
+        return null;
+    }
 }

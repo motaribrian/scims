@@ -24,8 +24,8 @@ public class AdminServlet extends HttpServlet {
             AdminService adminservice=new AdminService();
             Gson gson=new Gson();
             Map<String, Map<String,List<Contact>>> responseMap=new HashMap<>();
-            responseMap.put("Gender",adminservice.getUsersByGender(new String[]{"male","female","nonBinary"}));
-            responseMap.put("Counties",adminservice.getUsersByCounty(new String[]{"county1","county2","County3","county4"}));
+            responseMap.put("Gender",adminservice.getUsersByGender(Factory.getContactdao().getDistinctGenders()));
+            responseMap.put("Counties",adminservice.getUsersByCounty(Factory.getContactdao().getDistinctCounties()));
             responseMap.put("last5Added",adminservice.getLastnaddedcontacts(5));
             //resp.getWriter().write(gson.toJson(responseMap));
 

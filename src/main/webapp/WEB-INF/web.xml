@@ -11,6 +11,15 @@
 
 
     <!--Login servlet -->
+    UsersServlet
+    <servlet>
+        <servlet-name>UsersServlet</servlet-name>
+        <servlet-class>com.codewithmotari.scims.UsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>/users/signup</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
