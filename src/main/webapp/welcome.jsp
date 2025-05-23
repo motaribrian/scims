@@ -8,6 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 <body>
+<%
+    Object username=request.getSession().getAttribute("username");
+    if(username==null){
+        request.getRequestDispatcher("/logo.jsp").forward(request,response);
+        return;
+    }
+
+%>
+
+
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -30,18 +41,94 @@
         </div>
     </div>
 </nav>
-<% String username=session.getAttribute("username").toString(); %>
 
-<h2>WELCOME <%= username %></h2>
+
+<h2>WELCOME <%= username.toString().toUpperCase()%></h2>
 <hr>
 
 
-<div class="input-group input-group-lg">
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-lg">Filter By</span>
+<form method="get" action="${pageContext.request.contextPath}/welcome" class="row g-3 my-3">
+
+    <div class="col-md-3">
+
+        <label for="gender" class="form-label">Search by Gender</label>
+<%--        <input type="text" id="gender" name="gender" class="form-control" value="<%= request.getParameter("gender") != null ? request.getParameter("gender") : "" %>">--%>
+        <select id="gender" class="form-select" name="gender">
+            <option selected> <%= request.getParameter("gender") != null ? request.getParameter("gender") : "" %></option>
+            <option></option>
+            <option >Male</option>
+            <option>Female</option>
+            <option>NonBinary</option>
+        </select>
     </div>
-    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-</div>
+    <div class="col-md-3">
+        <label for="county" class="form-label">Search by County</label>
+<%--        <input type="text" id="county" name="county" class="form-control" value="<%= request.getParameter("county") != null ? request.getParameter("county") : "" %>">--%>
+        <select id="county" class="form-select" name="county">
+            <option selected> <%= request.getParameter("county") != null ? request.getParameter("county") : "" %></option>
+            <option></option>
+            <option >County</option>
+            <option>Mombasa</option>
+            <option>Kwale</option>
+            <option>Kilifi</option>
+            <option>Tana-River</option>
+            <option>Lamu</option>
+            <option>Taita-Taveta</option>
+            <option>Garissa</option>
+            <option>Wajir</option>
+            <option>Mandera</option>
+            <option>Marsabit</option>
+            <option>Isiolo</option>
+            <option>Meru</option><option>Tharaka-Nithi</option>
+            <option>Embu</option>
+            <option>Kitui</option>
+            <option>Machakos</option>
+            <option>Makueni</option>
+            <option>Nyandarua</option>
+            <option>Kirinyaga</option>
+            <option>Nyeri</option>
+            <option>Muranga</option>
+            <option>Kiambu</option>
+            <option>Turkana</option>
+            <option>West-pokot</option>
+            <option>Samburu</option>
+            <option>Trans-Nzoia</option>
+            <option>Uasin-Gishu</option>
+            <option>Elgeyo-Marakwet</option>
+            <option>Nandi</option>
+            <option>Baringo</option>
+            <option>Laikipia</option>
+            <option>Nakuru</option>
+            <option>Narok</option>
+            <option>Kajiado</option>
+            <option>Kericho</option>
+            <option>Bomet</option>
+            <option>Kakamega</option>
+            <option>Vihiga</option>
+            <option>Bungoma</option>
+            <option>Busia</option>
+            <option>Siaya</option>
+            <option>Kisumu</option>
+            <option>Homa-Bay</option>
+            <option>Migori</option>
+            <option>Kisii</option>
+            <option>Nyamira</option>
+            <option>Nairobi</option>
+
+
+
+        </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+    <div class="col-md-3">
+        <label for="gender" class="form-label">print</label>
+        <button type="submit" class="form-input btn-btn-primary" formaction="/contacts/print">Print</button>
+    </div>
+</form>
+
+
 
 
 <table class="table">
@@ -58,32 +145,63 @@
         </tr>
     </thead>
     <tbody>
-        <%
+    <%
+        String genderFilter = request.getParameter("gender");
+        String countyFilter = request.getParameter("county");
 
-            // Retrieve the list of contacts from the session
-            List<Contact> contacts = (List<Contact>) session.getAttribute("contacts");
-            // Check if contacts are available and not empty
-            if (contacts != null && !contacts.isEmpty()) {
-                for (Contact contact : contacts) {
-        %>
-        <tr>
-            <th scope="row"><%= contact.getFullName() %></th>
-            <td><%= contact.getEmailAddress() %></td>
-            <td><%= contact.getPhoneNumber() %></td>
-            <td><%= contact.getDOB() %></td>
-            <td><%= contact.getGender() %></td>
-            <td><%= contact.getCounty() %></td>
-            <td><a href="/contacts/update?id=<%=contact.getId()  %>" class="btn btn-warning">Update</a></td>
-            <td><a href="/contacts/delete?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>
-        </tr>
-        <%
-                }
-            } else {
-        %>
-        <tr><td colspan="8">No contacts available</td></tr>
-        <%
+        List<Contact> contacts = (List<Contact>) session.getAttribute("contacts");
+        if (contacts != null && !contacts.isEmpty()) {
+            boolean matchFound = false;
+            for (Contact contact : contacts) {
+                boolean matchesGender = (genderFilter == null || genderFilter.isEmpty()) || contact.getGender().equalsIgnoreCase(genderFilter);
+                boolean matchesCounty = (countyFilter == null || countyFilter.isEmpty()) || contact.getCounty().equalsIgnoreCase(countyFilter);
+
+                if (matchesGender && matchesCounty) {
+                    matchFound = true;
+    %>
+    <tr>
+        <td><%= contact.getFullName() %></td>
+        <td><%= contact.getEmailAddress() %></td>
+        <td><%= contact.getPhoneNumber() %></td>
+        <td><%= contact.getDOB() %></td>
+        <td><%= contact.getGender() %></td>
+        <td><%= contact.getCounty() %></td>
+        <td><a href="/contacts/update?id=<%= contact.getId() %>" class="btn btn-warning">Update</a></td>
+        <td><a href="/contacts/delete?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>
+    </tr>
+    <%
             }
-        %>
+        }
+        if (!matchFound) {
+    %>
+    <tr><td colspan="8">No matching contacts found.</td></tr>
+    <%
+        }
+    } else {
+    %>
+    <tr><td colspan="8">No contacts available</td></tr>
+    <%
+        }
+    %>
+
+<%--    <tr>--%>
+<%--            <th scope="row"><%= contact.getFullName() %></th>--%>
+<%--            <td><%= contact.getEmailAddress() %></td>--%>
+<%--            <td><%= contact.getPhoneNumber() %></td>--%>
+<%--            <td><%= contact.getDOB() %></td>--%>
+<%--            <td><%= contact.getGender() %></td>--%>
+<%--            <td><%= contact.getCounty() %></td>--%>
+<%--            <td><a href="/contacts/update?id=<%=contact.getId()  %>" class="btn btn-warning">Update</a></td>--%>
+<%--            <td><a href="/contacts/delete?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>--%>
+<%--        </tr>--%>
+<%--        <%--%>
+<%--                }--%>
+<%--            } else {--%>
+<%--        %>--%>
+<%--        <tr><td colspan="8">No contacts available</td></tr>--%>
+<%--        <%--%>
+<%--            }--%>
+<%--        %>--%>
     </tbody>
 </table>
 

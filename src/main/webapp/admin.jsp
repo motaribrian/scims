@@ -27,6 +27,12 @@
     </style>
 </head>
 <body>
+<%
+    Object username=request.getSession().getAttribute("username");
+    if(username==null){
+        request.getRequestDispatcher("/logo.jsp").forward(request,response);
+    }
+%>
 
 <div class="container">
 

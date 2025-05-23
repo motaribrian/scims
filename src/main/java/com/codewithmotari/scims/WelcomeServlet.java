@@ -30,21 +30,22 @@ public class WelcomeServlet extends HttpServlet {
         //if a user is authenticated
         else{
 
-            List<Contact> list = null;
+            List<Contact> list,list2 = null;
             try {
                 int userId=Factory.getUserService().getUser(username.toString()).getId();
                 list=Factory.getContactServiceimpl().getContactbyUser(userId);
-
+                String param1=req.getParameter("gender") != null ? req.getParameter("gender") : "" ;
+                String param2=req.getParameter("county" ) != null ? req.getParameter("county") : "" ;
+                list2=Factory.getContactServiceimpl().filterByGenderAndCounty(list,param1,param2);
             } catch (SQLException e) {
                 e.printStackTrace();
 
             }
             try {
-                session.setAttribute("contacts",list);
+                session.setAttribute("contacts",list2);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             req.getRequestDispatcher("welcome.jsp").forward(req,resp);
         }
     }

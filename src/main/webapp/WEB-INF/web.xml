@@ -11,7 +11,7 @@
 
 
     <!--Login servlet -->
-    UsersServlet
+<!--    UsersServlet-->
     <servlet>
         <servlet-name>UsersServlet</servlet-name>
         <servlet-class>com.codewithmotari.scims.UsersServlet</servlet-class>
@@ -19,6 +19,16 @@
     <servlet-mapping>
         <servlet-name>UsersServlet</servlet-name>
         <url-pattern>/users/signup</url-pattern>
+    </servlet-mapping>
+
+    /contacts/print
+    <servlet>
+        <servlet-name>ContactsPrintServlet</servlet-name>
+        <servlet-class>com.codewithmotari.scims.ContactsPrintServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactsPrintServlet</servlet-name>
+        <url-pattern>/contacts/print</url-pattern>
     </servlet-mapping>
 
     <servlet>

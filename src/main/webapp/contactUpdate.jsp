@@ -8,6 +8,14 @@
     <title>Update Contact</title>
 </head>
 <body>
+<%
+    Object username=request.getSession().getAttribute("username");
+    if(username==null){
+        request.getRequestDispatcher("/logo.jsp").forward(request,response);
+        return;
+    }
+
+%>
 
 <% Contact contact=(Contact) request.getAttribute("contact"); %>
 <h1 class="text-center">Update  <%= contact.getFullName() %> </h1>

@@ -17,7 +17,16 @@ import java.util.Map;
 public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Object username = req.getSession().getAttribute("username");
+        if(username==null){
+            System.out.println("user not authenticated welcomeservletdoget");
+            req.setAttribute("redirecturl","/admin");
+            resp.sendRedirect("/login.jsp");
+            return;
+
+        }
         try {
+
             //req.setAttribute("males",Factory.getContactServiceimpl().getContactByGender("male"));
             resp.setCharacterEncoding("UTF-8");
             Map<String,List<Contact>> lastn=new HashMap<>();

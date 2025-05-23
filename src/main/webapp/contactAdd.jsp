@@ -29,6 +29,12 @@ contentType="text/html;charset=UTF-8"
 
 </head>
 <body>
+<%
+    Object username=request.getSession().getAttribute("username");
+    if(username==null){
+        request.getRequestDispatcher("/logo.jsp").forward(request,response);
+    }
+%>
 <h1 class="text-uppercase text-center">Contact Add Form</h1>
 
 

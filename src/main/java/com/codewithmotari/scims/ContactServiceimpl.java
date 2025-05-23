@@ -1,6 +1,7 @@
 package com.codewithmotari.scims;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactServiceimpl implements ContactService {
@@ -15,6 +16,42 @@ public class ContactServiceimpl implements ContactService {
     @Override
     public List<Contact> getAllContacts() throws SQLException {
         return contactdao.getAllContacts();
+    }
+
+
+    public List<Contact> filterByGenderAndCounty(List<Contact> list,String gender,String county){
+        List<Contact> contacts=new ArrayList<>();
+        if(gender.isEmpty() && county.isEmpty()){
+            return list;
+        }
+
+        else if (gender.isEmpty()) {
+                for (Contact contact2 : list) {
+                    if(contact2.getCounty().equalsIgnoreCase(county)){
+                        contacts.add(contact2);
+                    }
+            }
+            return contacts;
+        }
+
+        else if (county.isEmpty()) {
+            for (Contact contact : list) {
+                if (contact.getGender().equalsIgnoreCase(gender)) {
+                    contacts.add(contact);
+                }
+            }
+            return contacts;
+        }
+
+        else {
+            for (Contact contact : list) {
+                if (!(contact.getGender().equalsIgnoreCase(gender) && contact.getCounty().equalsIgnoreCase(county))) {
+                    contacts.add(contact);
+                }
+
+            }
+            return list;
+        }
     }
 
     @Override
