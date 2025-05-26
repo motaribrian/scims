@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.model;
 
 import java.sql.Date;
 
@@ -14,7 +14,7 @@ public class Contact {
     
     private int  id;
     private String fullName;
-    private int phoneNumber;
+    private Long phoneNumber;
     private String emailAddress;
     private int idNumber;
     private Date DOB;
@@ -53,7 +53,7 @@ public class Contact {
         this.userId = userId;
     }
 
-    public Contact(int id, String fullName, int phoneNumber, String emailAddress, int idNumber, Date DOB, String gender, String county, int userId) {
+    public Contact(int id, String fullName, Long phoneNumber, String emailAddress, int idNumber, Date DOB, String gender, String county, int userId) {
         this.id = id;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -84,11 +84,11 @@ public class Contact {
         this.fullName = fullName;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

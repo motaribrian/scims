@@ -1,4 +1,8 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.service;
+
+import com.codewithmotari.scims.repository.UserDao;
+import com.codewithmotari.scims.model.Userr;
+import com.codewithmotari.scims.util.Factory;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -7,7 +11,7 @@ public class UserService {
     private UserDao userDao;
     public UserService() {
         try {
-            userDao=Factory.getUserDao();
+            userDao= Factory.getUserDao();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

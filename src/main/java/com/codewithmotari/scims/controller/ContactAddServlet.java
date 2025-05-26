@@ -2,15 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
+
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.service.ContactService;
+import com.codewithmotari.scims.service.UserService;
+import com.codewithmotari.scims.util.Factory;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
@@ -28,7 +31,7 @@ public class ContactAddServlet extends HttpServlet {
     private ContactService contactService;
     private UserService userService;
     public ContactAddServlet() throws SQLException {
-        contactService=Factory.getContactServiceimpl();
+        contactService= Factory.getContactServiceimpl();
         userService=Factory.getUserService();
     }
 
@@ -130,7 +133,7 @@ public class ContactAddServlet extends HttpServlet {
 
         try {
             String fullName = request.getParameter("firstname");
-            int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
+            Long phoneNumber = Long.valueOf(request.getParameter("full_phone").substring(1));
             Date dateofBirth= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));
             String gender=request.getParameter("gender");

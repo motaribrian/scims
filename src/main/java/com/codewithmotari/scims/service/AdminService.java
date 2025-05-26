@@ -1,4 +1,7 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.service;
+
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.util.Factory;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -6,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminService {
-    private ContactService contactService=Factory.getContactServiceimpl();
+    private ContactService contactService= Factory.getContactServiceimpl();
    Map<String,List<Contact>> usersByGender;
     Map<String,List<Contact>> usersByCounty;
     Map<String,List<Contact>> last5Contacts;

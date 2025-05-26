@@ -1,5 +1,10 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.util;
 
+import com.codewithmotari.scims.repository.ContactDAO;
+import com.codewithmotari.scims.repository.UserDao;
+import com.codewithmotari.scims.service.ContactServiceimpl;
+import com.codewithmotari.scims.service.JasperReportService;
+import com.codewithmotari.scims.service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

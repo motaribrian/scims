@@ -1,4 +1,8 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
+
+import com.codewithmotari.scims.model.Userr;
+import com.codewithmotari.scims.service.UserService;
+import com.codewithmotari.scims.util.Factory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +17,7 @@ public class LoginServlet extends HttpServlet {
     private UserService userService;
 
     public LoginServlet() {
-        userService=Factory.getUserService();
+        userService= Factory.getUserService();
     }
 
     @Override

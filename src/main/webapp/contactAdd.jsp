@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<%@ page import="com.codewithmotari.scims.Contact" %>
+<%@ page import="com.codewithmotari.scims.model.Contact" %>
 <%@ page language="java"
 contentType="text/html;charset=UTF-8"
 %>
@@ -26,6 +26,14 @@ contentType="text/html;charset=UTF-8"
 
     <!-- Bootstrap JS (optional, for additional Bootstrap components) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- intl-tel-input CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/css/intlTelInput.min.css"/>
+
+    <!-- intl-tel-input JS -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/intlTelInput.min.js"></script>
+
+    <!-- Optional: utils.js for formatting/validation -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/utils.js"></script>
 
 </head>
 <body>
@@ -48,8 +56,9 @@ contentType="text/html;charset=UTF-8"
 
 
     <div class="col-12">
-        <label for="phonenumber" class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="0700000000">
+        <input type="hidden" name="full_phone" id="full_phone">
+        <label for="phone" class="form-label">Phone Number</label><br>
+    <input type="tel" id="phone" class="form-control" name="phone" required>
     </div><br>
     <div class="col-12">
         <label for="emailaddress" class="form-label">Email Address</label>
@@ -145,19 +154,43 @@ contentType="text/html;charset=UTF-8"
     </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 
+<%--<script>--%>
+<%--    const phoneInput = document.querySelector("#phone");--%>
+
+<%--    const iti = window.intlTelInput(phoneInput, {--%>
+<%--        initialCountry: "auto",--%>
+<%--        geoIpLookup: function (callback) {--%>
+<%--            fetch("https://ipinfo.io?token=efa15fc6c75fba")--%>
+<%--                .then((resp) => resp.json())--%>
+<%--                .then((resp) => callback(resp.country))--%>
+<%--                .catch(() => callback("us"));--%>
+<%--        },--%>
+<%--        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/utils.js", // for formatting & validation--%>
+<%--        separateDialCode: true,--%>
+<%--    });--%>
+<%--</script>--%>
+
 <script>
-    $(document).ready(function() {
-        var input = document.querySelector("#phone");
-        window.intlTelInput(input, {
-            initialCountry: "auto",
-            geoIpLookup: function(callback) {
-                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-                    var countryCode = (resp && resp.country) ? resp.country : "us";
-                    callback(countryCode);
-                });
-            },
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-        });
+    const phoneInput = document.querySelector("#phone");
+    const fullPhoneInput = document.querySelector("#full_phone");
+
+    const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "auto",
+        geoIpLookup: function (callback) {
+            fetch("https://ipinfo.io?token=efa15fc6c75fba")
+                .then((resp) => resp.json())
+                .then((resp) => callback(resp.country))
+                .catch(() => callback("us"));
+        },
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/utils.js",
+        separateDialCode: true,
+    });
+
+    // Add submit handler
+    const form = phoneInput.closest("form");
+    form.addEventListener("submit", function (e) {
+        // Store the full number in the hidden input
+        fullPhoneInput.value = iti.getNumber();
     });
 </script>
 

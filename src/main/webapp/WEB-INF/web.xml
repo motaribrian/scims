@@ -2,7 +2,7 @@
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
     <servlet>
         <servlet-name>ContactServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.ContactServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.ContactServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactServlet</servlet-name>
@@ -14,7 +14,7 @@
 <!--    UsersServlet-->
     <servlet>
         <servlet-name>UsersServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.UsersServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.UsersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UsersServlet</servlet-name>
@@ -24,7 +24,7 @@
     /contacts/print
     <servlet>
         <servlet-name>ContactsPrintServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.ContactsPrintServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.ContactsPrintServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactsPrintServlet</servlet-name>
@@ -33,7 +33,7 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.LoginServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -43,7 +43,7 @@
     <!--Welcome servlet -->
     <servlet>
         <servlet-name>WelcomeServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.WelcomeServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.WelcomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>WelcomeServlet</servlet-name>
@@ -55,7 +55,7 @@
 
     <servlet>
         <servlet-name>ContactUpdate</servlet-name>
-        <servlet-class>com.codewithmotari.scims.ContactUpdateServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.ContactUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactUpdate</servlet-name>
@@ -65,7 +65,7 @@
 
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.AdminServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.AdminServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -74,7 +74,7 @@
 
     <servlet>
         <servlet-name>ContactAddServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.ContactAddServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.ContactAddServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactAddServlet</servlet-name>
@@ -83,7 +83,7 @@
 
     <servlet>
         <servlet-name>ContactDeleteServlet</servlet-name>
-        <servlet-class>com.codewithmotari.scims.ContactDeleteServlet</servlet-class>
+        <servlet-class>com.codewithmotari.scims.controller.ContactDeleteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ContactDeleteServlet</servlet-name>

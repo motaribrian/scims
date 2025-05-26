@@ -3,15 +3,15 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="user_id" class="java.lang.Integer"/>
 	<parameter name="county" class="java.lang.String"/>
 	<parameter name="gender" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM contacts
 WHERE
-  ($P{gender} IS NULL OR $P{gender} = '' OR gender = $P{gender})
-  AND
-  ($P{county} IS NULL OR $P{county} = '' OR county = $P{county})
-]]>
+    ($P{user_id} IS NULL OR $P{user_id} = '' OR user_id = $P{user_id})
+    AND ($P{gender} IS NULL OR $P{gender} = '' OR gender = $P{gender})
+    AND ($P{county} IS NULL OR $P{county} = '' OR county = $P{county})]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -19,7 +19,7 @@ WHERE
 	<field name="full_names" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="phone_number" class="java.lang.Integer">
+	<field name="phone_number" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="id_number" class="java.lang.Integer">
@@ -145,7 +145,7 @@ WHERE
 			</textField>
 			<textField>
 				<reportElement x="474" y="0" width="79" height="20" uuid="4c75f392-da1f-4db1-9775-75a63a9a5107"/>
-				<textFieldExpression><![CDATA[$F{phone_number}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["+"+$F{phone_number}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

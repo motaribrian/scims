@@ -1,4 +1,6 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.service;
+
+import com.codewithmotari.scims.model.Contact;
 
 import java.sql.SQLException;
 import java.util.List;

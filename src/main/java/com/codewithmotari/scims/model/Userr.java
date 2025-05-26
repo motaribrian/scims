@@ -1,4 +1,4 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.model;
 
 public class Userr {
     private int id;

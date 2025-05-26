@@ -1,4 +1,9 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
+
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.service.ContactService;
+import com.codewithmotari.scims.service.UserService;
+import com.codewithmotari.scims.util.Factory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,7 +63,7 @@ public class ContactUpdateServlet extends HttpServlet {
             userId = userService.getUser((String) username).getId();
 
             String fullName = (String) request.getParameter("fullname");
-            int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
+            Long phoneNumber = Long.valueOf(request.getParameter("phonenumber"));
             String emailaddress = (String) request.getParameter("emailaddress");
             Date dob= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));

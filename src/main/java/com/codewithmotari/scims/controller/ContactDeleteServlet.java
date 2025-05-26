@@ -1,4 +1,7 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
+
+import com.codewithmotari.scims.service.ContactService;
+import com.codewithmotari.scims.util.Factory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

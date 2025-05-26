@@ -1,5 +1,8 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
 
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.service.AdminService;
+import com.codewithmotari.scims.util.Factory;
 import com.google.gson.Gson;
 
 import javax.servlet.RequestDispatcher;
@@ -10,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 

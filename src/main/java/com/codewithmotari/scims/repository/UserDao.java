@@ -1,4 +1,7 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.repository;
+
+import com.codewithmotari.scims.model.Userr;
+import com.codewithmotari.scims.util.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

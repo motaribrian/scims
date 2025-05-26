@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.repository;
+
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.util.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class ContactDAO {
         String query = "INSERT INTO contacts (full_names, phone_number, id_number , date_of_brith, county , user_id ,email_address,gender,idfile) values (?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt= con.prepareStatement(query);
         stmt.setString(1,contactdto.getFullName());
-        stmt.setInt(2,contactdto.getPhoneNumber());
+        stmt.setLong(2,contactdto.getPhoneNumber());
         stmt.setInt(3,contactdto.getIdNumber());
         stmt.setInt(6,contactdto.getUserId());
         stmt.setDate(4,contactdto.getDOB());
@@ -50,7 +53,7 @@ public class ContactDAO {
         String query = "UPDATE contacts SET full_names = ?, phone_number = ?, email_address=?, id_number=?,date_of_brith = ?, county = ? ,gender=? WHERE id = ?";
         try (PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, contactdto.getFullName());
-            stmt.setInt(2, contactdto.getPhoneNumber());
+            stmt.setLong(2, contactdto.getPhoneNumber());
             stmt.setString(3, contactdto.getEmailAddress());
             stmt.setInt(4, contactdto.getIdNumber());
             stmt.setDate(5, contactdto.getDOB());
@@ -74,7 +77,7 @@ public class ContactDAO {
         while (rs.next()){
             Contact c=new Contact();
             c.setFullName(rs.getString("full_names"));
-            c.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            c.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             c.setEmailAddress(rs.getString("email_address"));
             c.setId(rs.getInt("id"));
             try{
@@ -101,7 +104,7 @@ public class ContactDAO {
         ResultSet rs=ps.executeQuery();
         if (rs.next()){
             contact.setFullName(rs.getString("full_names"));
-            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setIdNumber(rs.getInt("id_number"));
@@ -119,7 +122,7 @@ public class ContactDAO {
         ResultSet rs=ps.executeQuery();
         if(rs.next()){
             contact.setFullName(rs.getString("full_name"));
-            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_birth"));
             contact.setGender(rs.getString("gender"));
@@ -140,7 +143,7 @@ public class ContactDAO {
             Contact contact=new Contact();
             contact.setId(rs.getInt("id"));
             contact.setFullName(rs.getString("full_names"));
-            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
@@ -168,7 +171,7 @@ public class ContactDAO {
             Contact contact=new Contact();
             contact.setId(rs.getInt("id"));
             contact.setFullName(rs.getString("full_names"));
-            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
@@ -190,7 +193,7 @@ public class ContactDAO {
             Contact contact=new Contact();
             contact.setId(rs.getInt("id"));
             contact.setFullName(rs.getString("full_names"));
-            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
@@ -212,7 +215,7 @@ public class ContactDAO {
             Contact contact=new Contact();
             contact.setId(rs.getInt("id"));
             contact.setFullName(rs.getString("full_names"));
-            contact.setPhoneNumber(Integer.parseInt(rs.getString("phone_number")));
+            contact.setPhoneNumber(Long.valueOf(rs.getString("phone_number")));
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));

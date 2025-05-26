@@ -1,7 +1,9 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
+
+import com.codewithmotari.scims.model.Userr;
+import com.codewithmotari.scims.util.Factory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

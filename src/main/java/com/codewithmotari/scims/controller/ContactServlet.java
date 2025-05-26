@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.controller;
 
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.service.ContactService;
+import com.codewithmotari.scims.util.Factory;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;

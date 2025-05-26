@@ -1,6 +1,9 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.service;
 
+import com.codewithmotari.scims.util.DBConnection;
+import com.codewithmotari.scims.util.Factory;
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +16,7 @@ public class JasperReportService {
     public JasperReportService() {
     }
 
-    public byte[] exportpdf(String county, String gender, String username) throws IOException {
+    public byte[] exportpdf(int userId,String county, String gender, String username) throws IOException {
         String outdir = System.getProperty("user.home")+"/reportsfiles/"+username;
         String outfile = outdir+"/contactsReport.pdf";
         File outdirectory = new File(outdir);
@@ -31,10 +34,13 @@ public class JasperReportService {
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperInput);
             //map parameters
             Map<String, Object> parameters = new HashMap<>();
+            parameters.put("user_id", userId);
             parameters.put("county", county);
             parameters.put("gender", gender);
-            Connection con =DBConnection.getConnection();
+            Connection con = DBConnection.getConnection();
+            JRBeanCollectionDataSource jrBeanCollectionDataSource=new JRBeanCollectionDataSource(Factory.getContactServiceimpl().getAllContacts());
 
+            jrBeanCollectionDataSource.next();
             //filling the report
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,con);
 

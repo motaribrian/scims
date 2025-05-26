@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.List, com.codewithmotari.scims.Contact" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.List, com.codewithmotari.scims.model.Contact" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -162,7 +162,7 @@
     <tr>
         <td><%= contact.getFullName() %></td>
         <td><%= contact.getEmailAddress() %></td>
-        <td><%= contact.getPhoneNumber() %></td>
+        <td>+<%= contact.getPhoneNumber() %></td>
         <td><%= contact.getDOB() %></td>
         <td><%= contact.getGender() %></td>
         <td><%= contact.getCounty() %></td>
@@ -183,25 +183,6 @@
     <%
         }
     %>
-
-<%--    <tr>--%>
-<%--            <th scope="row"><%= contact.getFullName() %></th>--%>
-<%--            <td><%= contact.getEmailAddress() %></td>--%>
-<%--            <td><%= contact.getPhoneNumber() %></td>--%>
-<%--            <td><%= contact.getDOB() %></td>--%>
-<%--            <td><%= contact.getGender() %></td>--%>
-<%--            <td><%= contact.getCounty() %></td>--%>
-<%--            <td><a href="/contacts/update?id=<%=contact.getId()  %>" class="btn btn-warning">Update</a></td>--%>
-<%--            <td><a href="/contacts/delete?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>--%>
-<%--        </tr>--%>
-<%--        <%--%>
-<%--                }--%>
-<%--            } else {--%>
-<%--        %>--%>
-<%--        <tr><td colspan="8">No contacts available</td></tr>--%>
-<%--        <%--%>
-<%--            }--%>
-<%--        %>--%>
     </tbody>
 </table>
 

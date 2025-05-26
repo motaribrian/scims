@@ -1,4 +1,8 @@
-package com.codewithmotari.scims;
+package com.codewithmotari.scims.service;
+
+import com.codewithmotari.scims.model.Contact;
+import com.codewithmotari.scims.repository.ContactDAO;
+import com.codewithmotari.scims.util.Factory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

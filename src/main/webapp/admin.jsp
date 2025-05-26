@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.codewithmotari.scims.Contact" %> <!-- Import the actual package of your Contact class -->
+<%@ page import="com.codewithmotari.scims.model.Contact" %> <!-- Import the actual package of your Contact class -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
