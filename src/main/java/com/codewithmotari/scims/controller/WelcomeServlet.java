@@ -17,14 +17,6 @@ public class WelcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();
         Object username=  session.getAttribute("username");
-        //if a user ain't authenticated
-        if(username==null){
-            System.out.println("user not authenticated welcomeservletdoget");
-            resp.sendRedirect("/login.jsp");
-
-        }
-        //if a user is authenticated
-        else{
 
             List<Contact> list,list2 = null;
             try {
@@ -43,7 +35,6 @@ public class WelcomeServlet extends HttpServlet {
                 e.printStackTrace();
             }
             req.getRequestDispatcher("welcome.jsp").forward(req,resp);
-        }
     }
 
     @Override

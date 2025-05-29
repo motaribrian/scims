@@ -19,11 +19,7 @@ public class ContactsPrintServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Object username = request.getSession().getAttribute("username");
-        if(username==null){
-            System.out.println("user not authenticated welcomeservletdoget");
-            response.sendRedirect("/login.jsp");
-            return;
-        }
+
         int userId;
         try {
             userId = userService.getUser((String) username).getId();

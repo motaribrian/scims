@@ -40,7 +40,7 @@
     <div class="col-12">
         <input type="hidden" name="full_phone" id="full_phone">
         <label for="phone" class="form-label">Phone Number</label><br>
-        <input type="tel" id="phone" class="form-control" name="phone" required>
+        <input type="tel" id="phone" class="form-control" name="phone" value=<%=contact.getPhoneNumber()%>>
     </div>
 
 

@@ -27,11 +27,6 @@ public class ContactUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //if not authenticated
-        if(req.getSession().getAttribute("username")==null){
-            resp.sendRedirect("/login.jsp");
-            return;
-        }
         try {
             req.setAttribute("contact",contactservice.getContact(Integer.parseInt(req.getParameter("id"))));
             RequestDispatcher dispatcher=req.getRequestDispatcher("/contactUpdate.jsp");
@@ -51,19 +46,13 @@ public class ContactUpdateServlet extends HttpServlet {
         System.out.println("you hit the method");
         HttpSession session = request.getSession();
         Object username = session.getAttribute("username");
-
-        if (username == null) {
-
-            RequestDispatcher rd = request.getRequestDispatcher("/");
-            rd.forward(request, response);
-        }
         System.out.println("username is not null");
         int userId;
         try {
             userId = userService.getUser((String) username).getId();
 
             String fullName = (String) request.getParameter("fullname");
-            Long phoneNumber = Long.valueOf(request.getParameter("phonenumber"));
+            Long phoneNumber = Long.valueOf(request.getParameter("full_phone").substring(1));
             String emailaddress = (String) request.getParameter("emailaddress");
             Date dob= Date.valueOf(request.getParameter("date_of_birth"));
             int idnumber = Integer.parseInt(request.getParameter("idnumber"));

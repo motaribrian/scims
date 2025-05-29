@@ -187,7 +187,7 @@
 </table>
 
 <button type="button" class="btn btn-success" onClick="location.href='/contacts/add';">Add New</button>
-<form action="/" method="get">
+<form action="/login" method="get">
     <button type="submit" class="btn btn-outline-danger">Log Out</button>
 </form>
 

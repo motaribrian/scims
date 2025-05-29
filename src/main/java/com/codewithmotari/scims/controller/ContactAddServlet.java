@@ -82,17 +82,8 @@ public class ContactAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
         HttpSession session = request.getSession();
         Object username = session.getAttribute("username");
-
-
-        if (username == null) {
-           // System.out.println("ContactAddservlet.dopost :" + " username is null" +username.toString());
-            RequestDispatcher rd = request.getRequestDispatcher("/");
-            rd.forward(request, response);
-        }
         int userId;
         try {
             userId = userService.getUser((String) username).getId();
@@ -100,20 +91,10 @@ public class ContactAddServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-//        String basepath="/idphotos/"+username+"/"+request.getParameter("firstname");
-//        File file=new File(basepath, (String) username);
-//        if(!file.exists()){
-//            file.mkdirs();
-//        }
-//        for(Part part:request.getParts()){
-//            part.write(filename);
-//        }
-
 
         String firstname = request.getParameter("firstname");
 
-// Define base directory (should be an absolute path in production)
-        String basePath = System.getProperty("user.home");  // Example: "/var/www/myapp/idphotos"
+        String basePath = System.getProperty("user.home"); 
 
         File uploadDir = new File(basePath, (String) username);
         if (!uploadDir.exists()) {

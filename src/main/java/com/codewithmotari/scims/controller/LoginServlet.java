@@ -31,6 +31,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username=req.getParameter("username");
         String password=req.getParameter("password");
+        System.out.println("called auth");
         try {
             boolean authenticated=validateLogin(username,password);
             if(authenticated){
@@ -50,12 +51,11 @@ public class LoginServlet extends HttpServlet {
                 }
                 resp.sendRedirect("/welcome");
 
+            }else{
+              RequestDispatcher view=req.getRequestDispatcher("/login.jsp");
+              resp.sendRedirect("/login.jsp");
             }
-            //if not authentivated repeat the login
-            else {
-                RequestDispatcher view=req.getRequestDispatcher("/login.jsp");
-                resp.sendRedirect("/login.jsp");
-            }
+
         } catch (SQLException e) {
             //return user not found
             throw new RuntimeException(e);
