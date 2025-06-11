@@ -58,10 +58,7 @@ WHERE
 				</textElement>
 				<text><![CDATA[Contacts Report]]></text>
 			</staticText>
-			<image>
-				<reportElement x="475" y="10" width="60" height="60" backcolor="#000000" uuid="8793cf58-7eb7-49dc-b15f-b98e5a8aad2b"/>
-				<imageExpression><![CDATA["/home/zurion/Downloads/contacts.png"]]></imageExpression>
-			</image>
+
 		</band>
 	</title>
 	<pageHeader>

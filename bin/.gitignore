@@ -1,0 +1,32 @@
+# Ignore the target/ directory which contains compiled classes and WAR files
+/target/
+
+# Ignore IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Ignore Eclipse specific files
+.project
+.classpath
+.settings/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Maven wrapper if not using it
+mvnw
+mvnw.cmd
+.mvn/
+
+# Ignore log files
+*.log
+
+# Ignore build outputs
+*.war
+*.jar
+*.ear
+
+# Ignore other IDE related files if necessary
+.vscode/
+

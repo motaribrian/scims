@@ -1,5 +1,7 @@
-# Ignore the target/ directory which contains compiled classes and WAR files
+# Ignore the target/ directory which contains compiled classes and WAR files and app.properties
 /target/
+src/main/resources/application.properties
+
 
 # Ignore IntelliJ IDEA specific files
 .idea/

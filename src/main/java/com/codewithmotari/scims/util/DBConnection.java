@@ -4,9 +4,12 @@
  */
 package com.codewithmotari.scims.util;
 
+import com.codewithmotari.scims.config.DatasourceConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
@@ -14,9 +17,9 @@ import java.sql.SQLException;
  */
 public  class DBConnection {
     private static Connection con;
-    private static final String username="toor";
-    private static final String password="toor";
-    private static final String url="jdbc:mysql://localhost:3306/ContactRegistry";
+    private static final String username= DatasourceConfig.get("datasource.username");
+    private static final String password=DatasourceConfig.get("datasource.password");
+    private static final String url=DatasourceConfig.get("datasource.url");
 
     static{
         try {
