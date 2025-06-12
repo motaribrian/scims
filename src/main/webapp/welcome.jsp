@@ -11,7 +11,7 @@
 <%
     Object username=request.getSession().getAttribute("username");
     if(username==null){
-        request.getRequestDispatcher("/logo.jsp").forward(request,response);
+        request.getRequestDispatcher("/login.jsp").forward(request,response);
         return;
     }
 

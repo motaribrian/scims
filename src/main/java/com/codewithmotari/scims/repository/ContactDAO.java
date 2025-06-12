@@ -110,6 +110,7 @@ public class ContactDAO {
             contact.setIdNumber(rs.getInt("id_number"));
             contact.setGender(rs.getString("gender"));
             contact.setCounty(rs.getString("county"));
+            contact.setDOB(rs.getDate("date_of-brith"));
         }
 
         return contact;}

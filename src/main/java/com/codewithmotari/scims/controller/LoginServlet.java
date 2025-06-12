@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username=req.getParameter("username");
         String password=req.getParameter("password");
-        System.out.println("called auth");
+        System.out.println("called auth + username="+username+"    and password ="+password);
         try {
             boolean authenticated=validateLogin(username,password);
             if(authenticated){
