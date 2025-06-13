@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context docBase="/home/abdalla/zurideals/target/zurideals" path="/zurideals">
-  <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" initialSize="10" logAbandoned="true" maxActive="200" maxIdle="50" maxWait="60000" minEvictableIdleTimeMillis="60000" minIdle="10" name="jdbc/zurideals" password="dbP@55w0rd." removeAbandoned="true" removeAbandonedTimeout="60" testOnBorrow="true" testOnIdle="true" timeBetweenEvictionRunsMillis="60000" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/zurideals" username="zuriontech" validationInterval="60" validationQuery="SELECT 1"/>
-</Context>

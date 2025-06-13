@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context docBase="/home/abdalla/zuriwebs/target/zuriwebs" path="/zuriwebs">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" initialSize="10" logAbandoned="true" maxActive="200" maxIdle="50" maxWait="60000" minEvictableIdleTimeMillis="60000" minIdle="10" name="jdbc/zuriwebs" password="dbP@55w0rd." removeAbandoned="true" removeAbandonedTimeout="600" testOnBorrow="true" testOnIdle="true" timeBetweenEvictionRunsMillis="60000" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/zuriwebs" username="zuriontech" validationInterval="60" validationQuery="SELECT 1"/>
-</Context>
