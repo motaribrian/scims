@@ -35,7 +35,7 @@ public class ContactDAO {
         stmt.setInt(3,contactdto.getIdNumber());
         stmt.setInt(6,contactdto.getUserId());
         stmt.setDate(4,contactdto.getDOB());
-        stmt.setString(5, contactdto.getCounty());
+        //stmt.setString(5, contactdto.getCounty());
         stmt.setString(7,contactdto.getEmailAddress());
         stmt.setString(8,contactdto.getGender());
         stmt.setString(9,contactdto.getFilepath());
@@ -57,7 +57,7 @@ public class ContactDAO {
             stmt.setString(3, contactdto.getEmailAddress());
             stmt.setInt(4, contactdto.getIdNumber());
             stmt.setDate(5, contactdto.getDOB());
-            stmt.setString(6, contactdto.getCounty());
+            //stmt.setString(6, contactdto.getCounty());
             stmt.setString(7,contactdto.getGender());
             stmt.setInt(8, contactdto.getId());  // WHERE clause
 
@@ -88,7 +88,7 @@ public class ContactDAO {
             }
             c.setIdNumber(rs.getInt("id_number"));
             c.setGender(rs.getString("gender"));
-            c.setCounty(rs.getString("county"));
+            //c.setCounty(rs.getString("county"));
 
             //add the contact to the list
             allcontacts.add(c);
@@ -109,7 +109,7 @@ public class ContactDAO {
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setIdNumber(rs.getInt("id_number"));
             contact.setGender(rs.getString("gender"));
-            contact.setCounty(rs.getString("county"));
+            //contact.setCounty(rs.getString("county"));
             contact.setDOB(rs.getDate("date_of_brith"));
         }
 
@@ -127,7 +127,7 @@ public class ContactDAO {
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_birth"));
             contact.setGender(rs.getString("gender"));
-            contact.setCounty(rs.getString("county"));
+            //contact.setCounty(rs.getString("county"));
             return contact;
         }
         return null;
@@ -148,7 +148,7 @@ public class ContactDAO {
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
-            contact.setCounty(rs.getString("county"));
+            //contact.setCounty(rs.getString("county"));
              list.add(contact);
         }
         return list;
@@ -176,7 +176,7 @@ public class ContactDAO {
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
-            contact.setCounty(rs.getString("county"));
+            //contact.setCounty(rs.getString("county"));
             contact.setUserId(rs.getInt("user_id"));
             list.add(contact);
         }
@@ -198,7 +198,7 @@ public class ContactDAO {
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
-            contact.setCounty(rs.getString("county"));
+            //contact.setCounty(rs.getString("county"));
             contact.setUserId(rs.getInt("user_id"));
             list.add(contact);
         }
@@ -220,7 +220,7 @@ public class ContactDAO {
             contact.setEmailAddress(rs.getString("email_address"));
             contact.setDOB(rs.getDate("date_of_brith"));
             contact.setGender(rs.getString("gender"));
-            contact.setCounty(rs.getString("county"));
+            //contact.setCounty(rs.getString("county"));
             contact.setUserId(rs.getInt("user_id"));
             list.add(contact);
         }
@@ -241,11 +241,11 @@ public class ContactDAO {
 
     public String[] getDistinctCounties() throws SQLException {
         List<String> list=new LinkedList<>();
-        String query ="SELECT DISTINCT(county) FROM contacts";
+        String query ="SELECT DISTINCT(city_country) FROM cities";
         PreparedStatement ps=con.prepareStatement(query);
         ResultSet rs=ps.executeQuery();
         while (rs.next()){
-            list.add(rs.getString("county"));
+            list.add(rs.getString("city_country"));
         }
         return list.toArray(new String[list.size()]);
     }

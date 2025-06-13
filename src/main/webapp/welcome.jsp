@@ -184,7 +184,7 @@
         <td>+<%= contact.getPhoneNumber() %></td>
         <td><%= contact.getDOB() %></td>
         <td><%= contact.getGender() %></td>
-        <td><%= contact.getCounty() %></td>
+<%--        <td><%= contact.getCounty() %></td>--%>
         <td><a href="/contacts/update?id=<%= contact.getId() %>" class="btn btn-warning">Update</a></td>
         <td>
             <button type="button" class="btn btn-danger btn-delete" data-id="<%= contact.getId() %>" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
@@ -213,6 +213,7 @@
 
 <button type="button" class="btn btn-success" onClick="location.href='/contacts/add';">Add New</button>
 <form action="/login" method="get">
+    <input type="hidden" name="logout" value="true">
     <button type="submit" class="btn btn-outline-danger">Log Out</button>
 </form>
 

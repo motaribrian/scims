@@ -29,7 +29,6 @@ public class CityDaoex {
         for (Row row : sheet) {
             City city = null;
             if (row.getRowNum() > 0 && row.getCell(5).getStringCellValue().equals(iso2)) {
-                System.out.println("row num ="+row.getRowNum());
                 city = new City();
                 for (Cell cell : row) {
                     switch (cell.getColumnIndex()) {
@@ -57,10 +56,6 @@ public class CityDaoex {
                 }
             }if(city!=null){
             cities.add(city);}
-        }
-        Iterator it= cities.iterator();
-        while(it.hasNext()){
-            System.out.println(it.next());
         }
         return cities;
     }

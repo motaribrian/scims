@@ -160,7 +160,7 @@
 
 <br>
 
-<form action="/" method="get" class="row g-3 w-50" style="margin:auto;">
+<form action="/login" method="get" class="row g-3 w-50" style="margin:auto;">
     <button type="submit" class="btn btn-outline-danger">Log Out</button>
 </form>
 

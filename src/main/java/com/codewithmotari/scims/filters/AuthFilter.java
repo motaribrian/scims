@@ -21,39 +21,38 @@ import javax.servlet.http.HttpSession;
  * @author zurion
  */
 public class AuthFilter implements Filter {
-    
+
 
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
         String uri = req.getRequestURI();
         String contextPath = req.getContextPath();
-        System.out.println("contect path="+contextPath);
         HttpSession session = req.getSession(false);
         boolean loggedIn = (session != null && session.getAttribute("username") != null);
 
-        // Allow access to login-related resources without login
-        boolean isLoginRequest = uri.equals(contextPath+"/login") || uri.endsWith("login.jsp");
+        boolean isLoginRequest = uri.equals("/login") || uri.endsWith("login.jsp");
         boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/");
 
         if (!loggedIn && !isLoginRequest && !isStaticResource) {
-            System.out.println("filter says login");
             res.sendRedirect(contextPath + "/login");
             return;
         }
-        String sessionId=session.getId();
-        //res.setHeader("Set-Cookie", "JSESSIONID=" + sessionId + "; Path=/; HttpOnly; SameSite=Lax");
+
+        // ✅ Only set cookie if session exists
+        if (session != null) {
+            String sessionId = session.getId();
+            res.setHeader("Set-Cookie", "JSESSIONID=" + sessionId + "; Path=/; HttpOnly; SameSite=Lax");
+            System.out.println("SessionId="+sessionId);
+        }
 
         chain.doFilter(request, response);
     }
-
-
 
     @Override
     public void destroy() {

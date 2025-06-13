@@ -19,12 +19,18 @@ public class LoginServlet extends HttpServlet {
     public LoginServlet() {
         userService= Factory.getUserService();
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().invalidate();
-        RequestDispatcher view=req.getRequestDispatcher("/login.jsp");
-        view.forward(req,resp);
+        String logout = req.getParameter("logout");
+        if ("true".equals(logout)) {
+            HttpSession session = req.getSession(false);
+            if (session != null) {
+                session.invalidate();
+            }
+        }
+
+        RequestDispatcher view = req.getRequestDispatcher("/login.jsp");
+        view.forward(req, resp);
     }
 
     @Override
@@ -62,8 +68,17 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private boolean validateLogin(String username,String password) throws SQLException {
-        Userr userr=userService.getUser(username);
-        return username.equals(userr.getUsername()) && password.equals(userr.getPassword());
+    private boolean validateLogin(String username, String password) throws SQLException {
+        try {
+            Userr userr = userService.getUser(username);
+            if (userr == null) {
+                return false; // User not found
+            }
+            return username.equals(userr.getUsername()) && password.equals(userr.getPassword());
+        } catch (SQLException e) {
+            // Log the error properly
+            System.err.println("Database error during login validation: " + e.getMessage());
+            throw e;
+        }
     }
 }

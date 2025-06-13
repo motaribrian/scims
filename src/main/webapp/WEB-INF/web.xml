@@ -35,7 +35,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <!--Welcome servlet -->
@@ -46,6 +46,10 @@
     <servlet-mapping>
         <servlet-name>WelcomeServlet</servlet-name>
         <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 
@@ -104,11 +108,20 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/welcome</url-pattern>
 </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
 
 <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/contact</url-pattern>
 </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/cities/*</url-pattern>
+    </filter-mapping>
 
     <session-config>
         <session-timeout>
