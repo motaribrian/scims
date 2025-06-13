@@ -1,6 +1,16 @@
 package com.codewithmotari.scims.model;
 
 public class City {
+    private int cityId;
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
     private String cityName;
     private double latitude;
     private double longitude;

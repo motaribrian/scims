@@ -34,11 +34,12 @@ public class AuthFilter implements Filter {
 
         String uri = req.getRequestURI();
         String contextPath = req.getContextPath();
+        System.out.println("contect path="+contextPath);
         HttpSession session = req.getSession(false);
         boolean loggedIn = (session != null && session.getAttribute("username") != null);
 
         // Allow access to login-related resources without login
-        boolean isLoginRequest = uri.equals("/login") || uri.endsWith("login.jsp");
+        boolean isLoginRequest = uri.equals(contextPath+"/login") || uri.endsWith("login.jsp");
         boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/");
 
         if (!loggedIn && !isLoginRequest && !isStaticResource) {
@@ -47,7 +48,7 @@ public class AuthFilter implements Filter {
             return;
         }
         String sessionId=session.getId();
-        res.setHeader("Set-Cookie", "JSESSIONID=" + sessionId + "; Path=/; HttpOnly; SameSite=Lax");
+        //res.setHeader("Set-Cookie", "JSESSIONID=" + sessionId + "; Path=/; HttpOnly; SameSite=Lax");
 
         chain.doFilter(request, response);
     }

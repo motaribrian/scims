@@ -66,7 +66,7 @@
     <div class="col-md-12">
         <label for="gender" class="form-label">Gender</label>
         <select id="gender" class="form-select" name="gender" value="<%= contact.getGender() %>">
-            <option selected>Male</option>
+            <option selected ><%=contact.getGender()%></option>
             <option>Female</option>
             <option>NonBinary</option>
         </select>
@@ -74,7 +74,7 @@
 
             <div class="col-md-10">
                 <label for="county" class="county">County</label>
-                <select id="county" class="form-select" name="county">
+                <select id="county" class="form-select" name="county" value="<%=contact.getCounty()%>">
                 <>
                     <option selected><%=contact.getCounty()%></option>
                     <option>Mombasa</option>

@@ -159,6 +159,25 @@
                 if (matchesGender && matchesCounty) {
                     matchFound = true;
     %>
+    <!-- Confirm Delete Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this contact?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <!-- The actual delete action link -->
+                    <a href="/contacts/delete?id=<%= contact.getId() %>" id="deleteConfirmBtn" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <tr>
         <td><%= contact.getFullName() %></td>
         <td><%= contact.getEmailAddress() %></td>
@@ -167,7 +186,12 @@
         <td><%= contact.getGender() %></td>
         <td><%= contact.getCounty() %></td>
         <td><a href="/contacts/update?id=<%= contact.getId() %>" class="btn btn-warning">Update</a></td>
-        <td><a href="/contacts/delete?id=<%= contact.getId() %>" class="btn btn-danger">Delete</a></td>
+        <td>
+            <button type="button" class="btn btn-danger btn-delete" data-id="<%= contact.getId() %>" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                Delete
+            </button>
+        </td>
+
     </tr>
     <%
             }
@@ -185,6 +209,7 @@
     %>
     </tbody>
 </table>
+
 
 <button type="button" class="btn btn-success" onClick="location.href='/contacts/add';">Add New</button>
 <form action="/login" method="get">

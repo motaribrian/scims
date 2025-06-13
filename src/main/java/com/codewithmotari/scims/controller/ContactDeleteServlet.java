@@ -29,7 +29,7 @@ public class ContactDeleteServlet extends HttpServlet {
             req.setAttribute("contact",contactService.getContact(Integer.parseInt(req.getParameter("id"))));
             int id= Integer.parseInt(req.getParameter("id"));
             contactService.deleteUser(id);
-            RequestDispatcher dispatcher=req.getRequestDispatcher("/contactDelete.jsp");
+            RequestDispatcher dispatcher=req.getRequestDispatcher("/welcome");
             dispatcher.forward(req,resp);
         } catch (SQLException e) {
             e.printStackTrace();
